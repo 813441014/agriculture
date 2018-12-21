@@ -1,0 +1,25 @@
+
+Jsquid:S1854"5Remove this useless assignment to local variable "c".(ªíÑ¤
+|"squid:ClassVariableVisibilityCheck"QMake clazz a static final constant or non-public and provide accessors if needed.(”¹„=
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(¼ıî„üÿÿÿÿ
+Osquid:S1854"5Remove this useless assignment to local variable "c".(×Ü‚ºüÿÿÿÿ
+\squid:S2184"BCast one of the operands of this division operation to a "double".(ñ‡Ÿşûÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
+Lsquid:S1135"2Complete the task associated to this TODO comment.(Ğ„€¿ÿÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ
+nsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¼µğ‹
+>squid:S1905"$Remove this unnecessary cast to "T".(Æõá‡ÿÿÿÿÿ
+Dsquid:S2093"*Change this "try" to a try-with-resources.(ç£êúÿÿÿÿ
+?squid:S2185"%Remove this silly call to "Math.ceil"(ñ‡Ÿşûÿÿÿÿ
+Osquid:S1141"5Extract this nested try block into a separate method.(ç£êúÿÿÿÿ
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 59 to the 15 allowed.(¼ıî„üÿÿÿÿ
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(Ì´³”øÿÿÿÿ
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(®Ï§ëûÿÿÿÿ
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 63 to the 15 allowed.(åÑ¯Ìøÿÿÿÿ
+r
+squid:S135"YReduce the total number of break and continue statements in this loop to use at most one.(äˆá²ÿÿÿÿÿ
+Osquid:S1141"5Extract this nested try block into a separate method.(ç£êúÿÿÿÿ
+\squid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(Æ­»
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(„¢Áòÿÿÿÿÿ
+Jsquid:S1854"5Remove this useless assignment to local variable "c".(ªíÑ¤
+`squid:S2095"FUse try-with-resources or close this "Workbook" in a "finally" clause.(óÅï˜şÿÿÿÿ

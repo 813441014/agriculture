@@ -1,0 +1,21 @@
+
+Ysquid:S1197"8Move the array designator from the variable to the type.(ΒΦΰϊÿÿÿÿ8άδ“‰ύ,
+tsquid:S1192"SDefine a constant instead of duplicating this literal "η”¨ζ·εε·²ε­ε¨" 3 times.(Λώ‘§ύÿÿÿÿ8άδ“‰ύ,
+tsquid:S1192"SDefine a constant instead of duplicating this literal "θ·ε–ζ•°ζ®ε¤±θ΄¥" 6 times.(ΛΛ„³ύÿÿÿÿ8άδ“‰ύ,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(”«έ8άδ“‰ύ,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(΄8άδ“‰ύ,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(™Σ¥χ8άδ“‰ύ,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ιΨ»Ϊϋÿÿÿÿ8άδ“‰ύ,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ά¥ηψÿÿÿÿ8άδ“‰ύ,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ΑΦθ•8άδ“‰ύ,
+asquid:S1858"@"format" returns a string, there's no need to call "toString()".(¦½Ϊ„ÿÿÿÿÿ8άδ“‰ύ,
+asquid:S1858"@"format" returns a string, there's no need to call "toString()".(―„λίϋÿÿÿÿ8άδ“‰ύ,
+Dsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8άδ“‰ύ,
+Dsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8άδ“‰ύ,
+Dsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8άδ“‰ύ,
+Dsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8άδ“‰ύ,
+Dsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8άδ“‰ύ,
+Dsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8άδ“‰ύ,
+Dsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8άδ“‰ύ,
+Dsquid:S1148"#Use a logger to log this exception.(€ΙΤ…ύÿÿÿÿ8άδ“‰ύ,
+Zsquid:S1155">Use isEmpty() to check whether the collection is empty or not.(¥°―‰8άδ“‰ύ,

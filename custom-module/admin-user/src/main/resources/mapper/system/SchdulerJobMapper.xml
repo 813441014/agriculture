@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qpp.admin.mapper.system.SchdulerJobMapper">
+  <resultMap id="BaseResultMap" type="com.qpp.admin.entity.system.SchdulerJob">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="f_jobName" jdbcType="VARCHAR" property="fJobname" />
+    <result column="f_jobGroup" jdbcType="VARCHAR" property="fJobgroup" />
+    <result column="f_jobDes" jdbcType="VARCHAR" property="fJobdes" />
+    <result column="f_runParam" jdbcType="VARCHAR" property="fRunparam" />
+    <result column="f_cronExpression" jdbcType="VARCHAR" property="fCronexpression" />
+    <result column="f_beanName" jdbcType="VARCHAR" property="fBeanname" />
+    <result column="f_methodName" jdbcType="VARCHAR" property="fMethodname" />
+    <result column="f_runTime" jdbcType="BIGINT" property="fRuntime" />
+    <result column="f_status" jdbcType="INTEGER" property="fStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, f_jobName, f_jobGroup, f_jobDes, f_runParam, f_cronExpression, f_beanName, f_methodName, 
+    f_runTime, f_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_schduler_job
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_schduler_job
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qpp.admin.entity.system.SchdulerJob">
+    insert into t_schduler_job (id, f_jobName, f_jobGroup, 
+      f_jobDes, f_runParam, f_cronExpression, 
+      f_beanName, f_methodName, f_runTime, 
+      f_status)
+    values (#{id,jdbcType=VARCHAR}, #{fJobname,jdbcType=VARCHAR}, #{fJobgroup,jdbcType=VARCHAR}, 
+      #{fJobdes,jdbcType=VARCHAR}, #{fRunparam,jdbcType=VARCHAR}, #{fCronexpression,jdbcType=VARCHAR}, 
+      #{fBeanname,jdbcType=VARCHAR}, #{fMethodname,jdbcType=VARCHAR}, #{fRuntime,jdbcType=BIGINT}, 
+      #{fStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qpp.admin.entity.system.SchdulerJob">
+    insert into t_schduler_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fJobname != null">
+        f_jobName,
+      </if>
+      <if test="fJobgroup != null">
+        f_jobGroup,
+      </if>
+      <if test="fJobdes != null">
+        f_jobDes,
+      </if>
+      <if test="fRunparam != null">
+        f_runParam,
+      </if>
+      <if test="fCronexpression != null">
+        f_cronExpression,
+      </if>
+      <if test="fBeanname != null">
+        f_beanName,
+      </if>
+      <if test="fMethodname != null">
+        f_methodName,
+      </if>
+      <if test="fRuntime != null">
+        f_runTime,
+      </if>
+      <if test="fStatus != null">
+        f_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="fJobname != null">
+        #{fJobname,jdbcType=VARCHAR},
+      </if>
+      <if test="fJobgroup != null">
+        #{fJobgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="fJobdes != null">
+        #{fJobdes,jdbcType=VARCHAR},
+      </if>
+      <if test="fRunparam != null">
+        #{fRunparam,jdbcType=VARCHAR},
+      </if>
+      <if test="fCronexpression != null">
+        #{fCronexpression,jdbcType=VARCHAR},
+      </if>
+      <if test="fBeanname != null">
+        #{fBeanname,jdbcType=VARCHAR},
+      </if>
+      <if test="fMethodname != null">
+        #{fMethodname,jdbcType=VARCHAR},
+      </if>
+      <if test="fRuntime != null">
+        #{fRuntime,jdbcType=BIGINT},
+      </if>
+      <if test="fStatus != null">
+        #{fStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qpp.admin.entity.system.SchdulerJob">
+    update t_schduler_job
+    <set>
+      <if test="fJobname != null">
+        f_jobName = #{fJobname,jdbcType=VARCHAR},
+      </if>
+      <if test="fJobgroup != null">
+        f_jobGroup = #{fJobgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="fJobdes != null">
+        f_jobDes = #{fJobdes,jdbcType=VARCHAR},
+      </if>
+      <if test="fRunparam != null">
+        f_runParam = #{fRunparam,jdbcType=VARCHAR},
+      </if>
+      <if test="fCronexpression != null">
+        f_cronExpression = #{fCronexpression,jdbcType=VARCHAR},
+      </if>
+      <if test="fBeanname != null">
+        f_beanName = #{fBeanname,jdbcType=VARCHAR},
+      </if>
+      <if test="fMethodname != null">
+        f_methodName = #{fMethodname,jdbcType=VARCHAR},
+      </if>
+      <if test="fRuntime != null">
+        f_runTime = #{fRuntime,jdbcType=BIGINT},
+      </if>
+      <if test="fStatus != null">
+        f_status = #{fStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qpp.admin.entity.system.SchdulerJob">
+    update t_schduler_job
+    set f_jobName = #{fJobname,jdbcType=VARCHAR},
+      f_jobGroup = #{fJobgroup,jdbcType=VARCHAR},
+      f_jobDes = #{fJobdes,jdbcType=VARCHAR},
+      f_runParam = #{fRunparam,jdbcType=VARCHAR},
+      f_cronExpression = #{fCronexpression,jdbcType=VARCHAR},
+      f_beanName = #{fBeanname,jdbcType=VARCHAR},
+      f_methodName = #{fMethodname,jdbcType=VARCHAR},
+      f_runTime = #{fRuntime,jdbcType=BIGINT},
+      f_status = #{fStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <!--<select id="selectListByPage" parameterType="com.qpp.admin.entity.system.SchdulerJob" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    from t_schduler_job
+  </select>-->
+</mapper>

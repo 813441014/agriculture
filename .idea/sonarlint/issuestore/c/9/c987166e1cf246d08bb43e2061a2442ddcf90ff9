@@ -1,0 +1,9 @@
+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8‘úˆı,
+lsquid:UselessImportCheck"CRemove this unused import 'org.springframework.stereotype.Service'.(¼º¡Ú8‘úˆı,
+¯%squid:RedundantThrowsDeclarationCheck"yRemove the declaration of thrown exception 'org.apache.shiro.authc.AuthenticationException' which is a runtime exception.(ïÁ8‘úˆı,
+Esquid:S1481")Remove this unused "name" local variable.(¼ÀË•8‘úˆı,
+Ysquid:S1854"8Remove this useless assignment to local variable "name".(„†ÏÓşÿÿÿÿ8‘úˆı,
+ssquid:UselessImportCheck"ERemove this unused import 'org.springframework.stereotype.Component'.(Ş÷Ñ¸ÿÿÿÿÿ8‘úˆı,
+Tsquid:S1854"8Remove this useless assignment to local variable "name".(¼ÀË•8‘úˆı,
+Jsquid:S1481")Remove this unused "name" local variable.(„†ÏÓşÿÿÿÿ8‘úˆı,

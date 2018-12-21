@@ -1,0 +1,6 @@
+
+Š"squid:ClassVariableVisibilityCheck"PMake code a static final constant or non-public and provide accessors if needed.(»«™±øÿÿÿÿ8éş»ıü,
+‰"squid:ClassVariableVisibilityCheck"OMake msg a static final constant or non-public and provide accessors if needed.(¨Ü«’ûÿÿÿÿ8éş»ıü,
+‹"squid:ClassVariableVisibilityCheck"QMake count a static final constant or non-public and provide accessors if needed.(²»ˆÿÿÿÿÿ8éş»ıü,
+…"squid:ClassVariableVisibilityCheck"PMake data a static final constant or non-public and provide accessors if needed.(ıÛ¿¢8éş»ıü,
+Dsquid:S1948"&Make "data" transient or serializable.(ıÛ¿¢8éş»ıü,

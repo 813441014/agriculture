@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/custom-module/admin-user/admin-user.iml" filepath="$PROJECT_DIR$/custom-module/admin-user/admin-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/agriculture.iml" filepath="$PROJECT_DIR$/agriculture.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-basic/api-basic.iml" filepath="$PROJECT_DIR$/api-basic/api-basic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-common/api-common.iml" filepath="$PROJECT_DIR$/api-common/api-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-center/config-center.iml" filepath="$PROJECT_DIR$/config-center/config-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/custom-module/custom-module.iml" filepath="$PROJECT_DIR$/custom-module/custom-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/db-core/db-core.iml" filepath="$PROJECT_DIR$/db-core/db-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register-center/eureka_client/eureka_client.iml" filepath="$PROJECT_DIR$/register-center/eureka_client/eureka_client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register-center/eureka_server/eureka_server.iml" filepath="$PROJECT_DIR$/register-center/eureka_server/eureka_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/register-center/register-center.iml" filepath="$PROJECT_DIR$/register-center/register-center.iml" />
+    </modules>
+  </component>
+</project>

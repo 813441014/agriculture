@@ -1,0 +1,18 @@
+
+tsquid:S3008"ZRename this field "AUTO_REOMVE_PRE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßáú§ÿÿÿÿÿ
+msquid:S3008"SRename this field "PAGE_NUM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÑı†ÿÿÿÿÿ
+isquid:S3008"TRename this field "PAGE_SIZE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆı©ã
+osquid:S3008"ZRename this field "ORDER_BY_COLUMN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜»
+ksquid:S3008"QRename this field "IS_ASC" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§²ÚÈúÿÿÿÿ
+Osquid:S1444"5Make this "public static AUTO_REOMVE_PRE" field final(ßáú§ÿÿÿÿÿ
+Hsquid:S1444".Make this "public static PAGE_NUM" field final(ïÑı†ÿÿÿÿÿ
+Dsquid:S1444"/Make this "public static PAGE_SIZE" field final(ˆı©ã
+Jsquid:S1444"5Make this "public static ORDER_BY_COLUMN" field final(˜»
+Fsquid:S1444",Make this "public static IS_ASC" field final(§²ÚÈúÿÿÿÿ
+Œ"squid:ClassVariableVisibilityCheck"[Make AUTO_REOMVE_PRE a static final constant or non-public and provide accessors if needed.(ßáú§ÿÿÿÿÿ
+…"squid:ClassVariableVisibilityCheck"TMake PAGE_NUM a static final constant or non-public and provide accessors if needed.(ïÑı†ÿÿÿÿÿ
+"squid:ClassVariableVisibilityCheck"UMake PAGE_SIZE a static final constant or non-public and provide accessors if needed.(ˆı©ã
+‡"squid:ClassVariableVisibilityCheck"[Make ORDER_BY_COLUMN a static final constant or non-public and provide accessors if needed.(˜»
+ƒ"squid:ClassVariableVisibilityCheck"RMake IS_ASC a static final constant or non-public and provide accessors if needed.(§²ÚÈúÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(ûéŠâ
+Tsquid:S1118":Add a private constructor to hide the implicit public one.(“³±ûÿÿÿÿ

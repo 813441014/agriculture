@@ -1,0 +1,75 @@
+server:
+  port: 6680
+spring:
+#  freemarker:
+#      allow-request-override: false
+#      cache: false
+#      check-template-location: true
+#      charset: UTF-8
+#      content-type: text/html; charset=utf-8
+#      expose-request-attributes: false
+#      expose-session-attributes: false
+#      expose-spring-macro-helpers: false
+#      suffix: .ftl
+#      template-loader-path: classpath:/templates
+
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+#    user:
+#      driver-class-name: com.mysql.jdbc.Driver
+#      jdbc-url: jdbc:mysql://192.168.1.251:3306/collection?useUnicode=true&characterEncoding=utf-8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
+#      username: test
+#      password: 123456
+#
+#    goods:
+#      driver-class-name: com.mysql.jdbc.Driver
+#      jdbc-url: jdbc:mysql://192.168.1.251:3306/collections-pro-bk?useUnicode=true&characterEncoding=utf-8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
+#      username: test
+#      password: 123456
+
+    url: jdbc:mysql://47.105.194.152:3306/pp_admin?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: pp123456
+    filters: stat
+    maxActive: 20
+    maxIdle: 10
+    maxWait: 10000
+    minIdle: 1
+    initialSize: 1
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  type-aliases-package: com.qpp.admin.entity.**
+  check-config-location: true
+
+
+swagger:
+  enabled: true
+
+mapper:
+  mappers:
+  - com.qpp.basic.base.BaseMapper
+  not-empty: false
+  identity: MYSQL
+# PageHelperConfig 可以替代此方案
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+logging:
+  path: d:/
+  file: my.log
+  level:
+    com.qpp.admin.mapper: DEBUG

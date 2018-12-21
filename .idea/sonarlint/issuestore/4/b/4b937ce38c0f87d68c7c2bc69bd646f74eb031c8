@@ -1,0 +1,11 @@
+
+gsquid:S1192"KDefine a constant instead of duplicating this literal "---ä»»åŠ¡[" 4 times.(Ÿı´Ã8á¥È…ı,
+Fsquid:S1481"*Remove this unused "clazz" local variable.(ÒÒ½½8á¥È…ı,
+hsquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8á¥È…ı,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8á¥È…ı,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8á¥È…ı,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8á¥È…ı,
+]squid:S3457"AFormat specifiers should be used instead of string concatenation.(Ÿı´Ã8á¥È…ı,
+bsquid:S3457"AFormat specifiers should be used instead of string concatenation.(£úá“ùÿÿÿÿ8á¥È…ı,
+bsquid:S3457"AFormat specifiers should be used instead of string concatenation.(‡ÙŒÀşÿÿÿÿ8á¥È…ı,
+bsquid:S3457"AFormat specifiers should be used instead of string concatenation.(ÁæÚùÿÿÿÿ8á¥È…ı,

@@ -1,0 +1,6 @@
+
+Ssquid:S2629"7Use the built-in formatting to construct this argument.(–¦ÿ8‡È¾ˆı,
+Rsquid:S1068"1Remove this unused "maxRetryCount" private field.(¾ÛÉ¼úÿÿÿÿ8‡È¾ˆı,
+Xsquid:S1068"7Remove this unused "lgoinRetryCacheName" private field.(¡˜ĞÈÿÿÿÿÿ8ˆÈ¾ˆı,
+}squid:S1450"\Remove the "maxRetryCount" field and declare it as a local variable in the relevant methods.(¾ÛÉ¼úÿÿÿÿ8ˆÈ¾ˆı,
+]squid:S3457"AFormat specifiers should be used instead of string concatenation.(–¦ÿ8ˆÈ¾ˆı,

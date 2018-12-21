@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="admin-user" />
+        <module name="api-basic" />
+        <module name="api-common" />
+        <module name="db-core" />
+        <module name="eureka_client" />
+        <module name="eureka_server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="admin-user" target="1.8" />
+      <module name="agriculture" target="1.8" />
+      <module name="api-basic" target="1.8" />
+      <module name="api-common" target="1.8" />
+      <module name="api-commons" target="1.8" />
+      <module name="apibase" target="1.8" />
+      <module name="apollo" target="1.5" />
+      <module name="apollo-adminservice" target="1.5" />
+      <module name="apollo-archaius-gateway" target="1.8" />
+      <module name="apollo-biz" target="1.5" />
+      <module name="apollo-client" target="1.5" />
+      <module name="apollo-common" target="1.5" />
+      <module name="apollo-configservice" target="1.5" />
+      <module name="apollo-core" target="1.5" />
+      <module name="apollo-gateway" target="1.8" />
+      <module name="apollo-portal" target="1.5" />
+      <module name="config-center" target="1.8" />
+      <module name="custom-module" target="1.8" />
+      <module name="custom-region" target="1.8" />
+      <module name="db-core" target="1.8" />
+      <module name="demo-project" target="1.8" />
+      <module name="eureka-client" target="1.5" />
+      <module name="eureka_client" target="1.8" />
+      <module name="eureka_server" target="1.8" />
+      <module name="eurekaclient" target="1.8" />
+      <module name="eurekaserver" target="1.8" />
+      <module name="register-center" target="1.8" />
+      <module name="test-project" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

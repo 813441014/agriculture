@@ -1,0 +1,5 @@
+
+[squid:S1126"AReplace this if-then-else statement by a single return statement.(½ğ˜µÿÿÿÿÿ
+5squid:S2326"T is not used in the class.(ÑåÕúÿÿÿÿ
+Xsquid:S1610">Convert the abstract class "BaseController" into an interface.(ÑåÕúÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ

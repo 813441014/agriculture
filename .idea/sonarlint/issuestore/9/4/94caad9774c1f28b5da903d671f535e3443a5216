@@ -1,0 +1,3 @@
+
+¯%squid:RedundantThrowsDeclarationCheck"{Remove the declaration of thrown exception 'com.sun.jersey.api.client.ClientHandlerException' which is a runtime exception.(£ÓÚüÿÿÿÿ
+Osquid:S1191"5Use classes from the Java API instead of Sun classes.(ßŞÓÇúÿÿÿÿ

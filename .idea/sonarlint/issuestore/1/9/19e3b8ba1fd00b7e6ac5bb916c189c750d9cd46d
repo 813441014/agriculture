@@ -1,0 +1,11 @@
+
+@squid:S1659"Declare "h" on a separate line.(¬¦øÁøÿÿÿÿ8ºß—‰ı,
+hsquid:S1192"GDefine a constant instead of duplicating this literal "/login" 5 times.(ıï”Ùÿÿÿÿÿ8ºß—‰ı,
+gsquid:S1192"KDefine a constant instead of duplicating this literal "/main/main" 4 times.(åûè8ºß—‰ı,
+isquid:S1192"HDefine a constant instead of duplicating this literal "message" 3 times.(ÈŒÉÿÿÿÿÿ8ºß—‰ı,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¬å’æ8ºß—‰ı,
+Msquid:S1481",Remove this unused "session" local variable.(ÖŞÊâÿÿÿÿÿ8ºß—‰ı,
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.( Ü„àùÿÿÿÿ8ºß—‰ı,
+\squid:S1854";Remove this useless assignment to local variable "session".(ÖŞÊâÿÿÿÿÿ8ºß—‰ı,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ºß—‰ı,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ºß—‰ı,

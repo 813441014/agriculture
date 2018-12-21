@@ -1,0 +1,5 @@
+
+<squid:S1068"'Remove this unused "log" private field.(´Ç 
+]squid:S2166"CRename this class to remove "Exception" or correct its inheritance.(ƒÐã“ùÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(è¸ê¸
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ

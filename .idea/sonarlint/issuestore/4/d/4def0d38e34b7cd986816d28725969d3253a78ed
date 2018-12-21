@@ -1,0 +1,7 @@
+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(“²ó‰8£¾¼ˆý,
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(þÿä„8£¾¼ˆý,
+Usquid:UselessImportCheck"-Remove this unused import 'org.slf4j.Logger'.(íØ®68£¾¼ˆý,
+zsquid:UselessImportCheck"LRemove this unused import 'com.qpp.admin.service.system.SchdulerJobService'.(’›¢¢ùÿÿÿÿ8£¾¼ˆý,
+]squid:UselessImportCheck"4Remove this unused import 'org.slf4j.LoggerFactory'.(–ÿÚÞ8£¾¼ˆý,
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8£¾¼ˆý,

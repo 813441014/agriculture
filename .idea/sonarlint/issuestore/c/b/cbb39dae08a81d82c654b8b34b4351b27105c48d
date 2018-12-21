@@ -1,0 +1,53 @@
+
+_squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ó¦Q
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+Fsquid:S2692"10 is a valid index, but is ignored by this check.(ñá€¢
+Zsquid:S1854"@Remove this useless assignment to local variable "bodyAsString".(–ç¬×şÿÿÿÿ
+bsquid:S1192"HDefine a constant instead of duplicating this literal "operate" 5 times.(»œÏòıÿÿÿÿ
+bsquid:S1858"O"bodyAsString" is already a string, there's no need to call "toString()" on it.(÷b
+bsquid:S1858"O"bodyAsString" is already a string, there's no need to call "toString()" on it.(÷b
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+bsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¿×›ûÿÿÿÿ
+ksquid:S2068"V'password' detected in this expression, review this potentially hard-coded credential.(½»©Ú
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Fsquid:S2692"10 is a valid index, but is ignored by this check.(ñá€¢
+7squid:S2629"$Invoke method(s) only conditionally.(÷b
+Ssquid:UnusedPrivateMethod"0Remove this unused private "getinfo_put" method.(ò­ı¹
+‚squid:S1319"mThe type of the "inmap" object should be an interface such as "Map" rather than the implementation "HashMap".(šèÌÈ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+]squid:S2095"HUse try-with-resources or close this "JsonParser" in a "finally" clause.(ª‘£É
+>squid:S2629"$Invoke method(s) only conditionally.(ş™ú¹şÿÿÿÿ
+dsquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò­ı¹
+7squid:S2629"$Invoke method(s) only conditionally.(÷b
+dsquid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÃÎâûÿÿÿÿ
+bsquid:S1858"O"bodyAsString" is already a string, there's no need to call "toString()" on it.(÷b
+isquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾–¶ƒıÿÿÿÿ
+bsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(“ÎçÜıÿÿÿÿ
+bsquid:S1858"O"bodyAsString" is already a string, there's no need to call "toString()" on it.(÷b
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(ˆÎ¸™
+isquid:S1858"O"bodyAsString" is already a string, there's no need to call "toString()" on it.(îûûéşÿÿÿÿ
+dsquid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(÷ÑÎœùÿÿÿÿ
+7squid:S2629"$Invoke method(s) only conditionally.(÷b
+Osquid:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+bsquid:S1858"O"bodyAsString" is already a string, there's no need to call "toString()" on it.(÷b
+Zsquid:S1854"@Remove this useless assignment to local variable "bodyAsString".(–ç¬×şÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Fsquid:S1481"1Remove this unused "bodyAsString" local variable.(€Èù»
+_squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ó¦Q
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+`squid:S2095"KUse try-with-resources or close this "JsonGenerator" in a "finally" clause.(Ç¾ÑÆ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Şç¾Àùÿÿÿÿ
+7squid:S2629"$Invoke method(s) only conditionally.(÷b
+7squid:S2629"$Invoke method(s) only conditionally.(÷b
+asquid:S1192"LDefine a constant instead of duplicating this literal "JSESSIONID=" 4 times.(Š–“Œ
+7squid:S2629"$Invoke method(s) only conditionally.(÷b
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+\squid:S1192"GDefine a constant instead of duplicating this literal "Cookie" 4 times.(Š–“Œ
+7squid:S2629"$Invoke method(s) only conditionally.(÷b
+_squid:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(£—ş
+bsquid:S1858"O"bodyAsString" is already a string, there's no need to call "toString()" on it.(÷b
+9squid:S2629"$Invoke method(s) only conditionally.(‡Òø³
+bsquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(î¯Óıûÿÿÿÿ
+Fsquid:S1481"1Remove this unused "bodyAsString" local variable.(€Èù»
+bsquid:S1858"O"bodyAsString" is already a string, there's no need to call "toString()" on it.(÷b

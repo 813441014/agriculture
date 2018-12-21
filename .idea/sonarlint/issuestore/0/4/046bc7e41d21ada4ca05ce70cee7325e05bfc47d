@@ -1,0 +1,7 @@
+
+©%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(çÜ³”8×šù€ý,
+©%squid:RedundantThrowsDeclarationCheck"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(ˆ’€·8×šù€ý,
+Ssquid:S2629"7Use the built-in formatting to construct this argument.(²Êæä8×šù€ý,
+Xsquid:S2629"7Use the built-in formatting to construct this argument.(‘²Ó„ÿÿÿÿÿ8×šù€ý,
+]squid:S3457"AFormat specifiers should be used instead of string concatenation.(²Êæä8×šù€ý,
+bsquid:S3457"AFormat specifiers should be used instead of string concatenation.(‘²Ó„ÿÿÿÿÿ8×šù€ý,
