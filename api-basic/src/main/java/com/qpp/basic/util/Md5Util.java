@@ -3,7 +3,7 @@ package com.qpp.basic.util;
 import org.apache.shiro.crypto.hash.Md5Hash;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  * 采用md5加密 确保数据安全性
  */
 public class Md5Util {

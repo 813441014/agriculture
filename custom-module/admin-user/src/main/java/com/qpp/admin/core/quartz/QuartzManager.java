@@ -12,12 +12,13 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.util.Date;
 
-
 /**
- * 动态添加或删除定时任务
- * @author anonymous
- *
- */
+ * @version 1.0.1
+ * @Author qipengpai
+ * @ClassName QuartzManager
+ * @Description //TODO  动态添加或删除定时任务
+ * @Date 16:37 2018/12/22
+ **/
 @Slf4j
 @Service
 public class QuartzManager {
@@ -34,7 +35,7 @@ public class QuartzManager {
 		Scheduler scheduler = schedulerFactoryBean.getScheduler();
     	TriggerKey triggerKey = TriggerKey.triggerKey(job.getfJobname(), job.getfJobgroup());
     	Trigger trigger = scheduler.getTrigger(triggerKey);
-    	
+
     	if(job.getfRuntime() <= System.currentTimeMillis()) {
     		remove(job);
     		log.warn("运行时间不合法, 小于或等于当前时间");

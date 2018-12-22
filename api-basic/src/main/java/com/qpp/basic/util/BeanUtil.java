@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  * 对象操作
  */
 public class BeanUtil {

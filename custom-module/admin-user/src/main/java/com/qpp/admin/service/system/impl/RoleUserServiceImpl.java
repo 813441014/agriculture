@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 @Service
 public class RoleUserServiceImpl extends BaseServiceImpl<SysRoleUser,String> implements

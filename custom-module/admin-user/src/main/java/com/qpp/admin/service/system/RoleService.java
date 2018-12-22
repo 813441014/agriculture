@@ -6,7 +6,7 @@ import com.qpp.basic.base.BaseService;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 public interface RoleService extends BaseService<SysRole,String> {
 

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 @Service
 public class JobServiceImpl extends BaseServiceImpl<SysJob,String> implements JobService {

@@ -3,7 +3,6 @@ package com.qpp.admin.controller;
 import com.alibaba.fastjson.JSONArray;
 
 import com.qpp.admin.core.annotation.Log;
-import com.qpp.admin.core.filter.VerifyCodeUtils;
 import com.qpp.admin.core.shiro.ShiroUtil;
 import com.qpp.admin.entity.system.SysMenu;
 import com.qpp.admin.entity.system.SysUser;
@@ -11,6 +10,7 @@ import com.qpp.admin.service.system.MenuService;
 import com.qpp.admin.service.system.SysUserService;
 import com.qpp.basic.base.bean.CurrentUser;
 import com.qpp.basic.util.CommonUtil;
+import com.qpp.basic.util.VerifyCodeUtils;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -33,7 +33,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  * 登录、退出页面
  */
 @Controller

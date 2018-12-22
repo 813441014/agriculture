@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 @Service
 public class RoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenu,String> implements

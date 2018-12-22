@@ -4,7 +4,7 @@ package com.qpp.basic.util;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  * ajax 回执
  */
 public class JsonUtil {

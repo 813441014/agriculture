@@ -34,7 +34,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  * 用户管理
  */
 //@Api(value="user")

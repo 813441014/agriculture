@@ -1,7 +1,7 @@
 package com.qpp.basic.exception;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 public class MyException extends RuntimeException {
 

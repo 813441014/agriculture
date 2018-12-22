@@ -9,7 +9,7 @@ import com.qpp.basic.util.Checkbox;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 public interface SysUserService extends BaseService<SysUser, String> {
 
@@ -20,9 +20,6 @@ public interface SysUserService extends BaseService<SysUser, String> {
 
     /**
      * 分页查询
-     *
-     * @param
-     * @return
      */
     List<SysUser> selectListByPage(SysUser sysUser);
 
@@ -30,15 +27,13 @@ public interface SysUserService extends BaseService<SysUser, String> {
 
     /**
      * 新增
-     *
      * @param user
-     * @return
+     * @return int
      */
     int add(SysUser user);
 
     /**
      * 删除
-     *
      * @param id
      * @return
      */
@@ -55,7 +50,6 @@ public interface SysUserService extends BaseService<SysUser, String> {
 
     /**
      * 更新密码
-     *
      * @param user
      * @return
      */

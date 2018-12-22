@@ -19,7 +19,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 @Service
 public class MenuServiceImpl extends BaseServiceImpl<SysMenu, String> implements MenuService {
@@ -101,8 +101,7 @@ public class MenuServiceImpl extends BaseServiceImpl<SysMenu, String> implements
                     if (o1.getOrderNum() == o2.getOrderNum()) {
                         return 0;
                     }
-                }
-                catch (Exception e){
+                } catch (Exception e){
                     e.printStackTrace();
                 }
                 return -1;

@@ -14,9 +14,12 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
- * @author langmingsheng
- * 拦截器 校验用户是否已授权 未授权返回到登录界面
- */
+ * @version 1.0.1
+ * @Author qipengpai
+ * @ClassName PermissionFilter
+ * @Description //TODO 拦截器 校验用户是否已授权 未授权返回到登录界面
+ * @Date 11:37 2018/12/19
+ **/
 public class PermissionFilter extends AuthorizationFilter {
 
   @Autowired
@@ -29,7 +32,6 @@ public class PermissionFilter extends AuthorizationFilter {
   protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse,
                                     Object o) throws Exception {
     String[] roles=(String[])o;
-
     Subject sub = getSubject(servletRequest, servletResponse);
     Session session= sub.getSession();
     CurrentUser user= (CurrentUser) session.getAttribute("curentUser");

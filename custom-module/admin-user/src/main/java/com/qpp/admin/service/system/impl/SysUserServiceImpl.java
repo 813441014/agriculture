@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 @Service
 public class SysUserServiceImpl extends BaseServiceImpl<SysUser,String> implements SysUserService {

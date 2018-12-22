@@ -30,6 +30,7 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
+  //TODO 登录次数
   @Bean
   public RetryLimitCredentialsMatcher getRetryLimitCredentialsMatcher(){
     RetryLimitCredentialsMatcher rm=new RetryLimitCredentialsMatcher(getCacheManager(),"5");
@@ -41,6 +42,7 @@ public class ShiroConfig {
   @Bean(name = "loginRealm")
   public LoginRealm getLoginRealm(){
     LoginRealm realm= new LoginRealm();
+    //TODO 设置资格证书
     realm.setCredentialsMatcher(getRetryLimitCredentialsMatcher());
     return realm;
   }
@@ -129,5 +131,15 @@ public class ShiroConfig {
     return filterRegistrationBean;
   }*/
 
+/**
+ * 限制用户登录尝试次数，防止多次尝试，暴力破解密码情况出现。
+ * 要限制用户登录尝试次数，必然要对用户名密码验证失败做记录，Shiro中用户名密码的验证交给了CredentialsMatcher
+ * 所以在CredentialsMatcher里面检查，记录登录次数是最简单的做法。
+ * Shiro天生和Ehcache是一对好搭档，无论是单机还是集群，都可以在Ehcache中存储登录尝试次数信息。
+ * 现在介绍一个简单的登录次数验证做法，实现一个RetryLimitCredentialsMatchers继承至HashedCredentialsMatcher，
+ * 加入缓存，在每次验证用户名密码之前先验证用户名尝试次数，如果超过5次就抛出尝试过多异常，
+ * 否则验证用户名密码，验证成功把尝试次数清零，不成功则直接退出。
+ * 这里依靠Ehcache自带的timeToIdleSeconds来保证锁定时间
+ */
 
 }

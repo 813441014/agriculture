@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  *
  * 定时任务 controller
  */

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author langmingsheng 通用service层
+ * @author qipengpai 通用service层
  */
 public interface BaseService<T, E extends Serializable> {
     /**

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  * 菜单
  */
 @Controller

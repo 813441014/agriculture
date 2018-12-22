@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  *  mapper封装 crud
  */
 public interface BaseMapper<T,E extends Serializable>{

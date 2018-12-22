@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  * 自定义拦截器 暂时不用
  */
 public class CustomAdvicFilter extends FormAuthenticationFilter {

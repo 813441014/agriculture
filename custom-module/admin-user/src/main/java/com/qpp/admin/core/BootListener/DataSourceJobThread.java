@@ -15,10 +15,12 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 /**
- * @author langmingsheng
- *
- * 启动数据库中已经设定为 启动状态(status:true)的任务 项目启动时init
- */
+ * @version 1.0.1
+ * @Author qipengpai
+ * @ClassName DataSourceJobThread
+ * @Description //TODO 启动数据库中已经设定为 启动状态(status:true)的任务 项目启动时init
+ * @Date 16:37 2018/12/18
+ **/
 @Slf4j
 @Configuration
 public class DataSourceJobThread extends Thread {
@@ -34,6 +36,22 @@ public class DataSourceJobThread extends Thread {
   @Autowired
   QuartzManager quartzManager;
 
+  @Override
+  public void run() {
+    try {
+      Thread.sleep(1000);
+      log.info("动态quartz的初始化, 获取数据库中的任务并添加到quartz管理器中");
+      SchdulerJob job = new SchdulerJob();
+      List<SchdulerJob> jobList = schdulerJobMapper.selectListByPage(job);
+      for(SchdulerJob jobItem : jobList) {
+        log.info("---任务["+jobItem.getId()+"]系统 init--开始启动---------");
+        quartzManager.addJob(jobItem);
+      }
+    } catch (Exception e) {
+      log.error("动态的quartz任务添加失败", e);
+      e.printStackTrace();
+    }
+  }
 
 /*  public void run() {
     try {
@@ -57,20 +75,5 @@ public class DataSourceJobThread extends Thread {
       e.printStackTrace();
     }
   }*/
-  @Override
-  public void run() {
-    try {
-      Thread.sleep(1000);
-      log.info("动态quartz的初始化, 获取数据库中的任务并添加到quartz管理器中");
-      SchdulerJob job = new SchdulerJob();
-      List<SchdulerJob> jobList = schdulerJobMapper.selectListByPage(job);
-        for(SchdulerJob jobItem : jobList) {
-            log.info("---任务["+jobItem.getId()+"]系统 init--开始启动---------");
-            quartzManager.addJob(jobItem);
-        }
-    } catch (Exception e) {
-      log.error("动态的quartz任务添加失败", e);
-      e.printStackTrace();
-    }
-  }
+
 }

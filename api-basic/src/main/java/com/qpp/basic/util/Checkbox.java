@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  * 复选框类
  */
 @Getter

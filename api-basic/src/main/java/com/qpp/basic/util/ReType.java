@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author langmingsheng 查询返回json格式依照ui默认属性名称
+ * @author qipengpai 查询返回json格式依照ui默认属性名称
  */
 public class ReType implements Serializable {
     /** 状态 */

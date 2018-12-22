@@ -5,7 +5,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  *
  * 管理工具类
  */

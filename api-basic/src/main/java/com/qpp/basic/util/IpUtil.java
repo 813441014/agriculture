@@ -3,7 +3,7 @@ package com.qpp.basic.util;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 public class IpUtil {
 

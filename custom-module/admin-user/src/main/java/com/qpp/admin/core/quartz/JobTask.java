@@ -2,6 +2,7 @@ package com.qpp.admin.core.quartz;
 
 import com.qpp.admin.core.annotation.Log;
 import com.qpp.admin.entity.system.SysJob;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.quartz.*;
 import org.slf4j.Logger;
@@ -13,17 +14,17 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashSet;
 
+
 /**
- * @author langmingsheng
- *
- * 定时任务类 增删改 可参考api：http://www.quartz-scheduler.org/api/2.2.1/
- *
- * 任务名称 默认为 SysJob 类 id
- */
+ * @version 1.0.1
+ * @Author qipengpai
+ * @ClassName JobTask
+ * @Description //TODO  任务名称 默认为 SysJob 类 id 定时任务类 增删改 可参考api：http://www.quartz-scheduler.org/api/2.2.1/
+ * @Date 16:37 2018/12/22
+ **/
+@Slf4j
 @Service
 public class JobTask {
-
-  private static final Logger log = LoggerFactory.getLogger(JobTask.class);
 
   @Autowired
   SchedulerFactoryBean schedulerFactoryBean;

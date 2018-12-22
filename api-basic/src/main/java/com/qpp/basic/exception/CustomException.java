@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 public class CustomException implements HandlerExceptionResolver {
   private static Logger log= LoggerFactory.getLogger(CustomException.class);

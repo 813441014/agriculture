@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import java.io.IOException;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 public class MyFreemarkerConfig extends FreeMarkerConfigurer {
 

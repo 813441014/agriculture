@@ -6,6 +6,7 @@ import com.qpp.admin.entity.system.SysLog;
 import com.qpp.admin.mapper.system.SysLogMapper;
 import com.qpp.basic.base.bean.CurrentUser;
 import com.qpp.basic.util.IpUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -24,10 +25,13 @@ import java.lang.reflect.Method;
 import java.util.Date;
 
 /**
- * @author langmingsheng
- *
- *         为增删改添加监控
- */
+ * @version 1.0.1
+ * @Author qipengpai
+ * @ClassName LogAspect
+ * @Description //TODO 为增删改添加监控
+ * @Date 16:37 2018/12/18
+ **/
+@Slf4j
 @Aspect
 @Component
 public class LogAspect {
@@ -79,14 +83,16 @@ public class LogAspect {
     }
 
     /**
-     * 记录异常
-     * 
-     * @param joinPoint
-     * @param e
-     */
+     * @Author qipengpai
+     * @Description //TODO 记录异常
+     * @Date 17:08 2018/12/22
+     * @Param [joinPoint, e]
+     * @return void
+     * @throws 
+     **/
     @AfterThrowing(value = "pointcut()", throwing = "e")
     public void afterException(JoinPoint joinPoint, Exception e) {
-        System.out.print("-----------afterException:" + e.getMessage());
+        log.error("-----------afterException:" + e.getMessage());
         addLog(joinPoint, getDesc(joinPoint) + e.getMessage());
     }
 

@@ -28,9 +28,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+
 /**
- * @author langmingsheng
- */
+ * @version 1.0.1
+ * @Author qipengpai
+ * @ClassName LoginRealm
+ * @Description //TODO realm
+ * @Date 11:37 2018/12/19
+ **/
 public class LoginRealm extends AuthorizingRealm{
 
 
@@ -47,10 +52,13 @@ public class LoginRealm extends AuthorizingRealm{
   private RoleMenuService roleMenuService;
 
   /**
-   * 获取认证
-   * @param principalCollection
-   * @return
-   */
+   * @Author qipengpai
+   * @Description //TODO 获取认证
+   * @Date 16:49 2018/12/22
+   * @Param [principalCollection]
+   * @return org.apache.shiro.authz.AuthorizationInfo
+   * @throws 
+   **/
   @Override
   protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
     SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -68,11 +76,13 @@ public class LoginRealm extends AuthorizingRealm{
   }
 
   /**
-   * 获取授权
-   * @param authenticationToken
-   * @return
-   * @throws AuthenticationException
-   */
+   * @Author qipengpai
+   * @Description //TODO 获取授权
+   * @Date 16:50 2018/12/22
+   * @Param [authenticationToken]
+   * @return org.apache.shiro.authc.AuthenticationInfo
+   * @throws 
+   **/
   @Override
   protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
           throws AuthenticationException {

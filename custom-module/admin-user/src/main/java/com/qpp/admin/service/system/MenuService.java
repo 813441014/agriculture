@@ -7,7 +7,7 @@ import com.qpp.basic.base.BaseService;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 public interface MenuService extends BaseService<SysMenu,String> {
 
@@ -21,15 +21,15 @@ public interface MenuService extends BaseService<SysMenu,String> {
 
   List<SysMenu> getMenuChildren(String id);
 
-  public JSONArray getMenuJson(String roleId);
+  JSONArray getMenuJson(String roleId);
 
-  public JSONArray getMenuJsonList();
+  JSONArray getMenuJsonList();
 
   List<SysMenu> getMenuChildrenAll(String id);
 
-  public JSONArray getTreeUtil(String roleId);
+  JSONArray getTreeUtil(String roleId);
 
   List<SysMenu> getUserMenu(String id);
 
-  public JSONArray getMenuJsonByUser(List<SysMenu> menuList);
+  JSONArray getMenuJsonByUser(List<SysMenu> menuList);
 }

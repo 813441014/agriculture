@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  */
 @Component
 public abstract class BaseServiceImpl<T, E extends Serializable> implements BaseService<T, E> {

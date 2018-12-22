@@ -5,9 +5,14 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+
 /**
- * @author langmingsheng
- */
+ * @version 1.0.1
+ * @Author qipengpai
+ * @ClassName MyServletContextListener
+ * @Description //TODO  暂无用处
+ * @Date 14:37 2018/12/18
+ **/
 @Component
 public class MyServletContextListener implements ServletContextListener {
 

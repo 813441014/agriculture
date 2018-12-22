@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author langmingsheng
+ * @author qipengpai
  *
  * 验证码拦截
  */
