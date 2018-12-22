@@ -10,8 +10,12 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * @author langmingsheng
- */
+ * @version 1.0.1
+ * @Author qipengpai
+ * @ClassName FreeMarkerConfig
+ * @Description //TODO  FreeMarker配置类
+ * @Date 15:37 2018/12/22
+ **/
 @Configuration
 public class FreeMarkerConfig{
 

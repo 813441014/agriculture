@@ -21,11 +21,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @author langmingsheng
- * spring shiro
- *
- */
-@Lazy
+ * @version 1.0.1
+ * @Author qipengpai
+ * @ClassName ShiroConfig
+ * @Description //TODO  Shiro配置类
+ * @Date 14:37 2018/12/18
+ **/
 @Configuration
 public class ShiroConfig {
 
@@ -44,6 +45,7 @@ public class ShiroConfig {
     return realm;
   }
 
+  //TODO 加载ehcache缓存
   @Bean
   public EhCacheManager getCacheManager(){
     EhCacheManager ehCacheManager=new EhCacheManager();
