@@ -251,8 +251,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @param params 参数值
      * @return 格式化后的文本
      */
-    public static String format(String template, Object... params)
-    {
+    public static String format(String template, Object... params) {
         if (isEmpty(params) || isEmpty(template))
         {
             return template;
@@ -263,8 +262,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     /**
      * 下划线转驼峰命名
      */
-    public static String toUnderScoreCase(String s)
-    {
+    public static String toUnderScoreCase(String s) {
         if (s == null)
         {
             return null;

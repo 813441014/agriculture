@@ -22,17 +22,14 @@ public class MapDataUtil {
         Entry<?, ?> entry;
         String name = "";
         String value = "";
-        while (entries.hasNext())
-        {
+        while (entries.hasNext()) {
             entry = (Entry<?, ?>) entries.next();
             name = (String) entry.getKey();
             Object valueObj = entry.getValue();
-            if (null == valueObj)
-            {
+            if (null == valueObj) {
                 value = "";
             }
-            else if (valueObj instanceof String[])
-            {
+            else if (valueObj instanceof String[]) {
                 String[] values = (String[]) valueObj;
                 for (int i = 0; i < values.length; i++)
                 {
@@ -40,8 +37,7 @@ public class MapDataUtil {
                 }
                 value = value.substring(0, value.length() - 1);
             }
-            else
-            {
+            else {
                 value = valueObj.toString();
             }
             returnMap.put(name, value);

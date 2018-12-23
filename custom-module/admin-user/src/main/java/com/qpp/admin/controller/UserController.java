@@ -13,10 +13,10 @@ import com.qpp.admin.service.system.RoleUserService;
 import com.qpp.admin.service.system.SysUserService;
 import com.qpp.basic.base.BaseController;
 import com.qpp.basic.exception.MyException;
-import com.qpp.basic.util.BeanUtil;
 import com.qpp.basic.util.Checkbox;
 import com.qpp.basic.util.JsonUtil;
 import com.qpp.basic.util.Md5Util;
+import com.qpp.common.utils.bean.BeanUtils;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -149,7 +149,7 @@ public class UserController extends BaseController {
         }
         try {
             SysUser oldUser = userService.selectByPrimaryKey(user.getId());
-            BeanUtil.copyNotNullBean(user, oldUser);
+            BeanUtils.copyNotNullBean(user, oldUser);
             userService.updateByPrimaryKeySelective(oldUser);
 
             SysRoleUser sysRoleUser = new SysRoleUser();
@@ -386,7 +386,7 @@ public class UserController extends BaseController {
         }
         try {
             SysUser oldUser = userService.selectByPrimaryKey(user.getId());
-            BeanUtil.copyNotNullBean(user, oldUser);
+            BeanUtils.copyNotNullBean(user, oldUser);
             userService.updateByPrimaryKeySelective(oldUser);
             jsonUtil.setFlag(true);
             byte flag = 1;

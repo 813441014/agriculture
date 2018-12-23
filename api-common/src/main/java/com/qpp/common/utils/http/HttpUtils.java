@@ -1,5 +1,6 @@
 package com.qpp.common.utils.http;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,8 +19,8 @@ import java.security.cert.X509Certificate;
  * @Date 2018/10/23 11:49
  * @Version 1.0.1
  */
+@Slf4j
 public class HttpUtils {
-    private static final Logger log = LoggerFactory.getLogger(HttpUtils.class);
 
     /**
      * 向指定 URL 发送GET方法的请求
@@ -90,13 +91,11 @@ public class HttpUtils {
      * @param param 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return 所代表远程资源的响应结果
      */
-    public static String sendPost(String url, String param)
-    {
+    public static String sendPost(String url, String param) {
         PrintWriter out = null;
         BufferedReader in = null;
         StringBuilder result = new StringBuilder();
-        try
-        {
+        try {
             String urlNameString = url + "?" + param;
             log.info("sendPost - {}", urlNameString);
             URL realUrl = new URL(urlNameString);
@@ -113,38 +112,29 @@ public class HttpUtils {
             out.flush();
             in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
             String line;
-            while ((line = in.readLine()) != null)
-            {
+            while ((line = in.readLine()) != null) {
                 result.append(line);
             }
             log.info("recv - {}", result);
         }
-        catch (ConnectException e)
-        {
+        catch (ConnectException e) {
             log.error("调用HttpUtils.sendPost ConnectException, url=" + url + ",param=" + param, e);
         }
-        catch (SocketTimeoutException e)
-        {
+        catch (SocketTimeoutException e) {
             log.error("调用HttpUtils.sendPost SocketTimeoutException, url=" + url + ",param=" + param, e);
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             log.error("调用HttpUtils.sendPost IOException, url=" + url + ",param=" + param, e);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             log.error("调用HttpsUtil.sendPost Exception, url=" + url + ",param=" + param, e);
         }
-        finally
-        {
-            try
-            {
-                if (out != null)
-                {
+        finally {
+            try {
+                if (out != null) {
                     out.close();
                 }
-                if (in != null)
-                {
+                if (in != null) {
                     in.close();
                 }
             }
@@ -156,8 +146,7 @@ public class HttpUtils {
         return result.toString();
     }
 
-    public static String sendSSLPost(String url, String param)
-    {
+    public static String sendSSLPost(String url, String param) {
         StringBuilder result = new StringBuilder();
         String urlNameString = url + "?" + param;
         try
@@ -192,27 +181,22 @@ public class HttpUtils {
             conn.disconnect();
             br.close();
         }
-        catch (ConnectException e)
-        {
+        catch (ConnectException e) {
             log.error("调用HttpUtils.sendSSLPost ConnectException, url=" + url + ",param=" + param, e);
         }
-        catch (SocketTimeoutException e)
-        {
+        catch (SocketTimeoutException e) {
             log.error("调用HttpUtils.sendSSLPost SocketTimeoutException, url=" + url + ",param=" + param, e);
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             log.error("调用HttpUtils.sendSSLPost IOException, url=" + url + ",param=" + param, e);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             log.error("调用HttpsUtil.sendSSLPost Exception, url=" + url + ",param=" + param, e);
         }
         return result.toString();
     }
 
-    private static class TrustAnyTrustManager implements X509TrustManager
-    {
+    private static class TrustAnyTrustManager implements X509TrustManager {
         @Override
         public void checkClientTrusted(X509Certificate[] chain, String authType)
         {
@@ -230,8 +214,7 @@ public class HttpUtils {
         }
     }
 
-    private static class TrustAnyHostnameVerifier implements HostnameVerifier
-    {
+    private static class TrustAnyHostnameVerifier implements HostnameVerifier {
         @Override
         public boolean verify(String hostname, SSLSession session)
         {

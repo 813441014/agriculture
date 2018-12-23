@@ -11,8 +11,8 @@ import com.qpp.admin.service.system.RoleService;
 import com.qpp.admin.service.system.RoleUserService;
 import com.qpp.basic.base.BaseController;
 import com.qpp.basic.exception.MyException;
-import com.qpp.basic.util.BeanUtil;
 import com.qpp.basic.util.JsonUtil;
+import com.qpp.common.utils.bean.BeanUtils;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -117,7 +117,7 @@ public class RoleController extends BaseController {
     }
     try {
       SysRole oldRole = roleService.selectByPrimaryKey(role.getId());
-      BeanUtil.copyNotNullBean(role, oldRole);
+      BeanUtils.copyNotNullBean(role, oldRole);
       roleService.updateByPrimaryKeySelective(oldRole);
 
       SysRoleMenu sysRoleMenu=new SysRoleMenu();

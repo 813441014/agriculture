@@ -8,8 +8,8 @@ import com.qpp.admin.service.system.MenuService;
 import com.qpp.admin.service.system.RoleMenuService;
 import com.qpp.basic.base.BaseController;
 import com.qpp.basic.exception.MyException;
-import com.qpp.basic.util.BeanUtil;
 import com.qpp.basic.util.JsonUtil;
+import com.qpp.common.utils.bean.BeanUtils;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -137,7 +137,7 @@ public class MenuController extends BaseController {
   @ResponseBody
   public JsonUtil updateMenu(SysMenu sysMenu){
     SysMenu oldMenu = menuService.selectByPrimaryKey(sysMenu.getId());
-    BeanUtil.copyNotNullBean(sysMenu,oldMenu);
+    BeanUtils.copyNotNullBean(sysMenu,oldMenu);
     menuService.updateByPrimaryKeySelective(oldMenu);
     return JsonUtil.sucess("保存成功");
   }

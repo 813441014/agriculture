@@ -6,8 +6,8 @@ import com.qpp.admin.entity.system.SysJob;
 import com.qpp.admin.service.system.JobService;
 import com.qpp.basic.base.BaseController;
 import com.qpp.basic.exception.MyException;
-import com.qpp.basic.util.BeanUtil;
 import com.qpp.basic.util.JsonUtil;
+import com.qpp.common.utils.bean.BeanUtils;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -99,7 +99,7 @@ public class JobController extends BaseController<SysJob> {
     }
     try{
       SysJob oldJob=jobService.selectByPrimaryKey(job.getId());
-      BeanUtil.copyNotNullBean(job, oldJob);
+      BeanUtils.copyNotNullBean(job, oldJob);
       jobService.updateByPrimaryKey(oldJob);
       j.setFlag(true);
       j.setMsg("修改成功");
