@@ -9,6 +9,8 @@ package com.qpp.common.constant;
  */
 public class Constants {
 
+    private Constants(){}
+
     /**
      * UTF-8 字符集
      */

@@ -46,7 +46,6 @@ public class DateUtils {
      */
     public static final String DESC_DATETIME_PATTERN = "yyyy年MM月dd日 HH:mm:ss";
 
-    private static final SimpleDateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
 
     /**
@@ -110,7 +109,7 @@ public class DateUtils {
         }
         catch (ParseException e) {
             log.error("字符串转换时间异常",e);
-            throw new RuntimeException(e);
+            return getNowDate();
         }
     }
 

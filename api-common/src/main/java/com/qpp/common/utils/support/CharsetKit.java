@@ -1,4 +1,4 @@
-package com.qpp.common.support;
+package com.qpp.common.utils.support;
 
 import com.qpp.common.utils.StringUtils;
 

@@ -49,64 +49,53 @@ public class ExcelUtil<T> {
      * @param input 输入流
      * @return 转换后集合
      */
-    public List<T> importExcel(String sheetName, InputStream input) throws Exception
-    {
+    public List<T> importExcel(String sheetName, InputStream input) throws Exception {
         List<T> list = new ArrayList<T>();
 
         Workbook workbook = WorkbookFactory.create(input);
         Sheet sheet = null;
-        if (StringUtils.isNotEmpty(sheetName))
-        {
+        if (StringUtils.isNotEmpty(sheetName)) {
             // 如果指定sheet名,则取指定sheet中的内容.
             sheet = workbook.getSheet(sheetName);
         }
-        else
-        {
+        else {
             // 如果传入的sheet名不存在则默认指向第1个sheet.
             sheet = workbook.getSheetAt(0);
         }
 
-        if (sheet == null)
-        {
+        if (sheet == null) {
             throw new IOException("文件sheet不存在");
         }
 
         int rows = sheet.getPhysicalNumberOfRows();
 
-        if (rows > 0)
-        {
+        if (rows > 0) {
             // 默认序号
             int serialNum = 0;
             // 有数据时才处理 得到类的所有field.
             Field[] allFields = clazz.getDeclaredFields();
             // 定义一个map用于存放列的序号和field.
             Map<Integer, Field> fieldsMap = new HashMap<Integer, Field>();
-            for (int col = 0; col < allFields.length; col++)
-            {
+            for (int col = 0; col < allFields.length; col++) {
                 Field field = allFields[col];
                 // 将有注解的field存放到map中.
-                if (field.isAnnotationPresent(Excel.class))
-                {
+                if (field.isAnnotationPresent(Excel.class)) {
                     // 设置类的私有字段属性可访问.
                     field.setAccessible(true);
                     fieldsMap.put(++serialNum, field);
                 }
             }
-            for (int i = 1; i < rows; i++)
-            {
+            for (int i = 1; i < rows; i++) {
                 // 从第2行开始取数据,默认第一行是表头.
                 Row row = sheet.getRow(i);
                 int cellNum = serialNum;
                 T entity = null;
-                for (int j = 0; j < cellNum; j++)
-                {
+                for (int j = 0; j < cellNum; j++) {
                     Cell cell = row.getCell(j);
-                    if (cell == null)
-                    {
+                    if (cell == null) {
                         continue;
                     }
-                    else
-                    {
+                    else {
                         // 先设置Cell的类型，然后就可以把纯数字作为String类型读进来了
                         row.getCell(j).setCellType(CellType.STRING);
                         cell = row.getCell(j);
@@ -163,18 +152,15 @@ public class ExcelUtil<T> {
                             cell.setCellValue(sdf.format(cell.getNumericCellValue()));
                             c = sdf.format(cell.getNumericCellValue());
                         }
-                        else
-                        {
+                        else {
                             c = cell.getStringCellValue();
                         }
                     }
-                    else if (BigDecimal.class == fieldType)
-                    {
+                    else if (BigDecimal.class == fieldType) {
                         c = cell.getStringCellValue();
                     }
                 }
-                if (entity != null)
-                {
+                if (entity != null) {
                     list.add(entity);
                 }
             }
@@ -194,16 +180,13 @@ public class ExcelUtil<T> {
     {
         OutputStream out = null;
         HSSFWorkbook workbook = null;
-        try
-        {
+        try {
             // 得到所有定义字段
             Field[] allFields = clazz.getDeclaredFields();
             List<Field> fields = new ArrayList<Field>();
             // 得到所有field并存放到一个list中.
-            for (Field field : allFields)
-            {
-                if (field.isAnnotationPresent(Excel.class))
-                {
+            for (Field field : allFields) {
+                if (field.isAnnotationPresent(Excel.class)) {
                     fields.add(field);
                 }
             }
@@ -329,8 +312,7 @@ public class ExcelUtil<T> {
                                         // 如果数据存在就填入,不存在填入空格.
                                         cell.setCellValue("");
                                     }
-                                    else
-                                    {
+                                    else {
                                         // 如果数据存在就填入,不存在填入空格.
                                         cell.setCellValue(field.get(vo) == null ? "" : String.valueOf(field.get(vo)));
                                     }

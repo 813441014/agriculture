@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/job")
-public class JobController extends BaseController<SysJob> {
+public class JobController extends BaseController {
 
   @Autowired
   JobService jobService;

@@ -2,7 +2,6 @@ package com.qpp.admin.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.qpp.admin.controller.dto.SysUserDTO;
 import com.qpp.admin.core.annotation.Log;
 import com.qpp.admin.core.quartz.JobTask;
 import com.qpp.admin.entity.system.SysRole;
@@ -17,7 +16,10 @@ import com.qpp.basic.util.Checkbox;
 import com.qpp.basic.util.JsonUtil;
 import com.qpp.basic.util.Md5Util;
 import com.qpp.common.utils.bean.BeanUtils;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +39,14 @@ import java.util.List;
  * @author qipengpai
  * 用户管理
  */
-//@Api(value="user")
+@Api(value="user")
+@Slf4j
 @Controller
 @RequestMapping(value = "/user")
 public class UserController extends BaseController {
 
-    //private static final Logger
+    private static final String NO_EXISTENCE= "用户名已存在";
+    private static final String DATA_GET_FAILD= "获取数据失败";
 
     @Autowired
     SysUserService userService;
@@ -84,12 +88,12 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation(value = "/addUser", httpMethod = "POST", notes = "添加用户")
-//    @Log(desc = "添加用户")
+    @Log(desc = "添加用户")
     @PostMapping(value = "addUser")
     @ResponseBody
     public String addUser(SysUser user, String[] role) {
         if (user == null) {
-            return "获取数据失败";
+            return DATA_GET_FAILD;
         }
         if (StringUtils.isBlank(user.getUsername())) {
 
@@ -103,7 +107,7 @@ public class UserController extends BaseController {
         }
         int result = userService.checkUser(user.getUsername());
         if (result > 0) {
-            return "用户名已存在";
+            return NO_EXISTENCE;
         }
         try {
             user.setEmail("0");
@@ -117,7 +121,7 @@ public class UserController extends BaseController {
                 roleUserService.insertSelective(sysRoleUser);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("[UserController]{addUser} -> error!",e);
         }
         return "保存成功";
 
@@ -140,11 +144,11 @@ public class UserController extends BaseController {
     @Log(desc = "更新用户", type = Log.LOG_TYPE.UPDATE)
     @PostMapping(value = "updateUser")
     @ResponseBody
-    public JsonUtil updateUser(SysUser user, String role[]) {
+    public JsonUtil updateUser(SysUser user, String... role) {
         JsonUtil jsonUtil = new JsonUtil();
         jsonUtil.setFlag(false);
         if (user == null) {
-            jsonUtil.setMsg("获取数据失败");
+            jsonUtil.setMsg(DATA_GET_FAILD);
             return jsonUtil;
         }
         try {
@@ -167,7 +171,7 @@ public class UserController extends BaseController {
             jsonUtil.setFlag(true);
             jsonUtil.setMsg("修改成功");
         } catch (MyException e) {
-            e.printStackTrace();
+            log.error("[UserController]{updateUser} -> error!",e);
         }
         return jsonUtil;
     }
@@ -179,7 +183,7 @@ public class UserController extends BaseController {
     @RequiresPermissions("user:del")
     public String del(String id) {
         if (StringUtils.isEmpty(id)) {
-            return "获取数据失败";
+            return DATA_GET_FAILD;
         }
 
         try {
@@ -194,18 +198,11 @@ public class UserController extends BaseController {
                 SysRoleUser sysRoleUser = new SysRoleUser();
                 sysRoleUser.setUserId(id);
                 roleUserService.deleteByUserId(sysRoleUser);
-//        return "账户已经绑定角色，无法删除";
             }
-//      if (flag) {
-//        //逻辑
-//        sysUser.setDelFlag(Byte.parseByte("1"));
-//        userService.updateByPrimaryKeySelective(sysUser);
-//      } else {
             //物理
             userService.delById(id);
-//      }
         } catch (MyException e) {
-            e.printStackTrace();
+            log.error("[UserController]{del} -> error!",e);
         }
         return "删除成功";
     }
@@ -267,7 +264,7 @@ public class UserController extends BaseController {
             j.setMsg("修改成功");
             j.setFlag(true);
         } catch (MyException e) {
-            e.printStackTrace();
+            log.error("[UserController]{rePass} -> error!",e);
         }
         return j;
     }
@@ -298,7 +295,7 @@ public class UserController extends BaseController {
         } catch (Exception e) {
             j.setFlag(false);
             j.setMsg("上传失败");
-            e.printStackTrace();
+            log.error("[UserController]{upload上传失败} -> error!",e);
         }
         j.setMsg("image/" + sdf.format(new Date()).toString() + "/" + req.getContextPath() + fileName);
         return j;
@@ -313,12 +310,12 @@ public class UserController extends BaseController {
         JsonUtil j = new JsonUtil();
         j.setFlag(Boolean.FALSE);
         if (StringUtils.isEmpty(uname)) {
-            j.setMsg("获取数据失败");
+            j.setMsg(DATA_GET_FAILD);
             return j;
         }
         int result = userService.checkUser(uname);
         if (result > 0) {
-            j.setMsg("用户名已存在");
+            j.setMsg(NO_EXISTENCE);
             return j;
         }
         j.setFlag(true);
@@ -330,17 +327,17 @@ public class UserController extends BaseController {
     @Log(desc = "添加第三方渠道用户")
     @PostMapping(value = "addThirdUser")
     @ResponseBody
-    public Object addThirdUser(SysUserDTO user) {
+    public Object addThirdUser(SysUser user) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success", false);
         if (user == null) {
-            jsonObject.put("message", "获取数据失败");
+            jsonObject.put("message", DATA_GET_FAILD);
             return jsonObject.toString();
         }
         try {
             int result = userService.checkUser(user.getUsername());
             if (result > 0) {
-                jsonObject.put("message", "用户名已存在");
+                jsonObject.put("message", NO_EXISTENCE);
                 return jsonObject.toString();
             }
             user.setEmail("bd@nmpocket.com");
@@ -348,26 +345,20 @@ public class UserController extends BaseController {
             user.setAge(35);
             user.setPhoto("third");
             user.setCreateDate(new Date());
-//            byte b = 1;
-//            user.setDelFlag(b);
             userService.insertSelective(user);
-//            DataChild dataChild = new DataChild();
-//            dataChild.setName(user.getChannelName());
-//            dataChild.setIdentify(user.getUsername());
-//            int count = this.dataService.insertNewDataChild(dataChild);
             SysRoleUser sysRoleUser = new SysRoleUser();
             sysRoleUser.setUserId(user.getId());
             SysRole sysRole = new SysRole();
             sysRole.setRoleName("thirdParty");
             List<SysRole> sysRoleList = this.roleService.selectListByPage(sysRole);
-            if (sysRoleList != null && sysRoleList.size() > 0) {
+            if (CollectionUtils.isNotEmpty(sysRoleList)) {
                 SysRole resultRole = sysRoleList.get(0);
                 sysRoleUser.setRoleId(resultRole.getId());
                 roleUserService.insertSelective(sysRoleUser);
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("[UserController]{addThirdUser} -> error!",e);
         }
         jsonObject.put("success", true);
         return jsonObject.toString();
@@ -381,7 +372,7 @@ public class UserController extends BaseController {
         JsonUtil jsonUtil = new JsonUtil();
         jsonUtil.setFlag(false);
         if (user == null) {
-            jsonUtil.setMsg("获取数据失败");
+            jsonUtil.setMsg(DATA_GET_FAILD);
             return jsonUtil;
         }
         try {
@@ -396,7 +387,7 @@ public class UserController extends BaseController {
                 jsonUtil.setMsg("账号已启用");
             }
         } catch (MyException e) {
-            e.printStackTrace();
+            log.error("[UserController]{updateUserDelFlag} -> error!",e);
         }
         return jsonUtil;
     }
@@ -409,7 +400,7 @@ public class UserController extends BaseController {
         JsonUtil j = new JsonUtil();
         j.setFlag(false);
         if (flag) {
-            j.setMsg("获取数据失败，修改失败");
+            j.setMsg(DATA_GET_FAILD);
             j.setFlag(false);
             return j;
         }
@@ -421,7 +412,7 @@ public class UserController extends BaseController {
             j.setMsg("密码重置成功");
             j.setFlag(true);
         } catch (MyException e) {
-            e.printStackTrace();
+            log.error("[UserController]{retpPass} -> error!",e);
         }
         return j;
     }

@@ -2,11 +2,10 @@ package com.qpp.admin.core.quartz;
 
 import com.qpp.admin.core.annotation.Log;
 import com.qpp.admin.entity.system.SysJob;
+import com.qpp.basic.exception.MyException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.quartz.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
@@ -28,6 +27,7 @@ public class JobTask {
 
   @Autowired
   SchedulerFactoryBean schedulerFactoryBean;
+  private static final String TASK = "---任务[";
 
   /**
    * true 存在 false 不存在
@@ -42,7 +42,7 @@ public class JobTask {
         return true;
       }
     } catch (SchedulerException e) {
-      e.printStackTrace();
+      log.error("[JobTask]{checkJob} -> error!",e);
     }
     return false;
   }
@@ -65,13 +65,13 @@ public class JobTask {
       // 启动
       if (!scheduler.isShutdown()) {
         scheduler.start();
-        log.info("---任务[" + triggerKey.getName() + "]启动成功-------");
+        log.info(TASK + triggerKey.getName() + "]启动成功-------");
         return true;
       }else{
-        log.info("---任务[" + triggerKey.getName() + "]已经运行，请勿再次启动-------");
+        log.info(TASK + triggerKey.getName() + "]已经运行，请勿再次启动-------");
       }
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      throw new MyException("开启定时任务异常");
     }
     return false;
   }
@@ -96,15 +96,14 @@ public class JobTask {
           .withMisfireHandlingInstructionDoNothing();
       CronTrigger trigger = TriggerBuilder.newTrigger().withIdentity(triggerKey)
           .withDescription(createTime).withSchedule(schedBuilder).build();
-      Class clazz = null;
       JobDetail jobDetail = scheduler.getJobDetail(jobKey);
       HashSet<Trigger> triggerSet = new HashSet<>();
       triggerSet.add(trigger);
       scheduler.scheduleJob(jobDetail, triggerSet, true);
-      log.info("---任务["+triggerKey.getName()+"]更新成功-------");
+      log.info(TASK+triggerKey.getName()+"]更新成功-------");
       return true;
     } catch (SchedulerException e) {
-      e.printStackTrace();
+      log.error("[JobTask]{updateJob} -> error!",e);
     }
     return false;
   }
@@ -121,11 +120,11 @@ public class JobTask {
         scheduler.pauseTrigger(triggerKey);
         scheduler.unscheduleJob(triggerKey);
         scheduler.deleteJob(JobKey.jobKey(job.getId(), Scheduler.DEFAULT_GROUP));
-        log.info("---任务[" + triggerKey.getName() + "]删除成功-------");
+        log.info(TASK + triggerKey.getName() + "]删除成功-------");
         return true;
       }
     } catch (SchedulerException e) {
-      e.printStackTrace();
+      log.error("[JobTask]{remove} -> error!",e);
     }
     return false;
   }

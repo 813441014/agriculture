@@ -1,34 +1,24 @@
 package com.qpp.admin.core.shiro;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 /** 
  * 验证器，增加了登录次数校验功能 
- */  
+ */
+@Slf4j
 public class RetryLimitCredentialsMatcher extends HashedCredentialsMatcher {  
-    private static final Logger log = LoggerFactory.getLogger(RetryLimitCredentialsMatcher.class);
 
     private Cache<String, AtomicInteger> loginRetryCache;
   
-    private int maxRetryCount = 5;  
-  
-    private String lgoinRetryCacheName;  
-  
-    public void setMaxRetryCount(int maxRetryCount) {  
-        this.maxRetryCount = maxRetryCount;  
-    }  
-  
+
     public RetryLimitCredentialsMatcher(CacheManager cacheManager, String lgoinRetryCacheName) {
-        this.lgoinRetryCacheName = lgoinRetryCacheName;
         loginRetryCache = cacheManager.getCache(lgoinRetryCacheName);
     }  
   

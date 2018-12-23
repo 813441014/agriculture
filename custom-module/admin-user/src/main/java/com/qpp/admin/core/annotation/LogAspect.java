@@ -5,7 +5,7 @@ import com.qpp.admin.core.shiro.ShiroUtil;
 import com.qpp.admin.entity.system.SysLog;
 import com.qpp.admin.mapper.system.SysLogMapper;
 import com.qpp.basic.base.bean.CurrentUser;
-import com.qpp.basic.util.IpUtil;
+import com.qpp.common.utils.IpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.aspectj.lang.JoinPoint;
@@ -51,17 +51,17 @@ public class LogAspect {
 
     private void addLog(JoinPoint jp, String text) {
         Log.LOG_TYPE type = getType(jp);
-        SysLog log = new SysLog();
+        SysLog sysLog = new SysLog();
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         //一些系统监控
         if (requestAttributes != null) {
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-            String ip = IpUtil.getIp(request);
-            log.setIp(ip);
+            String ip = IpUtils.getIpAddr(request);
+            sysLog.setIp(ip);
         }
-        log.setCreateTime(new Date());
-        log.setType(type.toString());
-        log.setText(text);
+        sysLog.setCreateTime(new Date());
+        sysLog.setType(type.toString());
+        sysLog.setText(text);
 
         Object[] obj = jp.getArgs();
         StringBuffer buffer = new StringBuffer();
@@ -72,14 +72,14 @@ public class LogAspect {
                 buffer.append("]");
             }
         }
-        log.setParam(buffer.toString());
+        sysLog.setParam(buffer.toString());
         try {
             CurrentUser currentUser = ShiroUtil.getCurrentUse();
-            log.setUserName(currentUser.getUsername());
+            sysLog.setUserName(currentUser.getUsername());
         } catch (UnavailableSecurityManagerException e) {
-
+            log.error("[LogAspect]{addLog} -> error!",e);
         }
-        logMapper.insert(log);
+        logMapper.insert(sysLog);
     }
 
     /**

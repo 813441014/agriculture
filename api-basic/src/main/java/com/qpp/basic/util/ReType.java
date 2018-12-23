@@ -14,7 +14,7 @@ public class ReType implements Serializable {
     /** 数据总数 */
     public long count;
 
-    public List<?> data;
+    public  List<?> data;
 
     public ReType() {
     }

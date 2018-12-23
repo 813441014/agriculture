@@ -40,7 +40,6 @@ public class VerfityCodeFilter extends AccessControlFilter{
         } catch (Exception e) {
             HttpServletResponse httpServletResponse=(HttpServletResponse)response;
             httpServletResponse.sendRedirect("/login");
-//            return "redirect:flt/error/403";
         }
 
         return StringUtils.equalsIgnoreCase(storedCode, currentCode);

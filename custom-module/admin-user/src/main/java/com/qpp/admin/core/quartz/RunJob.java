@@ -2,7 +2,6 @@ package com.qpp.admin.core.quartz;
 
 import com.qpp.admin.entity.system.SchdulerJob;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

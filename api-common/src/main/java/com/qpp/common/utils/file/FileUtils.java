@@ -10,20 +10,22 @@ import java.io.*;
  * @date 12:33 2018/10/22
  */
 public class FileUtils {
+
+    private FileUtils(){}
+
     /**
-     * 输出指定文件的byte数组
-     * 
-     * @param os 文件
-     * @return
-     */
-    public static void writeBytes(String filePath, OutputStream os) throws IOException
-    {
+     * @Author qipengpai
+     * @Description //TODO 输出指定文件的byte数组
+     * @Date 2018/12/23 20:12
+     * @Param [filePath, os] os 文件
+     * @return void
+     * @throws
+     **/
+    public static void writeBytes(String filePath, OutputStream os) throws IOException {
         FileInputStream fis = null;
-        try
-        {
+        try {
             File file = new File(filePath);
-            if (!file.exists())
-            {
+            if (!file.exists()) {
                 throw new FileNotFoundException(filePath);
             }
             fis = new FileInputStream(file);
@@ -66,18 +68,18 @@ public class FileUtils {
     }
 
     /**
-     * 删除文件
-     * 
-     * @param filePath 文件
-     * @return
-     */
-    public static boolean deleteFile(String filePath)
-    {
+     * @Author qipengpai
+     * @Description //TODO 删除文件
+     * @Date 2018/12/23 20:13
+     * @Param [filePath]
+     * @return boolean
+     * @throws
+     **/
+    public static boolean deleteFile(String filePath) {
         boolean flag = false;
         File file = new File(filePath);
         // 路径为文件且不为空则进行删除
-        if (file.isFile() && file.exists())
-        {
+        if (file.isFile() && file.exists()) {
             file.delete();
             flag = true;
         }

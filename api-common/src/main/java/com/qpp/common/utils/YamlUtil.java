@@ -19,6 +19,10 @@ import java.util.Map;
  */
 public class YamlUtil {
 
+    private YamlUtil(){}
+
+    private static final String SPOT = ".";
+
     public static Map<?, ?> loadYaml(String fileName) throws FileNotFoundException {
         InputStream in = YamlUtil.class.getClassLoader().getResourceAsStream(fileName);
         return StringUtils.isNotEmpty(fileName) ? (LinkedHashMap<?, ?>) new Yaml().load(in) : null;
@@ -40,9 +44,9 @@ public class YamlUtil {
             String input = String.valueOf(qualifiedKey);
             if (!input.equals(""))
             {
-                if (input.contains("."))
+                if (input.contains(SPOT))
                 {
-                    int index = input.indexOf(".");
+                    int index = input.indexOf(SPOT);
                     String left = input.substring(0, index);
                     String right = input.substring(index + 1, input.length());
                     return getProperty((Map<?, ?>) map.get(left), right);
@@ -67,9 +71,9 @@ public class YamlUtil {
             String input = String.valueOf(qualifiedKey);
             if (!input.equals(""))
             {
-                if (input.contains("."))
+                if (input.contains(SPOT))
                 {
-                    int index = input.indexOf(".");
+                    int index = input.indexOf(SPOT);
                     String left = input.substring(0, index);
                     String right = input.substring(index + 1, input.length());
                     setProperty((Map<?, ?>) map.get(left), right, value);

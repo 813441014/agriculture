@@ -9,6 +9,8 @@ package com.qpp.common.constant;
  * @date 10:30 2018/10/22
  */
 public class PermissionConstants {
+
+    private PermissionConstants(){}
     /** 新增权限 */
     public static final String ADD_PERMISSION = "add";
 

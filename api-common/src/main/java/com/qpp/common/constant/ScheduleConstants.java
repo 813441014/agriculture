@@ -6,6 +6,7 @@ package com.qpp.common.constant;
  * @author qpp
  */
 public interface ScheduleConstants {
+
      String TASK_CLASS_NAME = "__TASK_CLASS_NAME__";
 
      String TASK_PROPERTIES = "__TASK_PROPERTIES__";

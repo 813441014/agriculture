@@ -15,6 +15,8 @@ import org.apache.shiro.subject.Subject;
  **/
 public class ShiroUtil {
 
+    private ShiroUtil(){}
+
     public static Subject getSubject(){
         return SecurityUtils.getSubject();
     }

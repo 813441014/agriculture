@@ -36,8 +36,8 @@ public class CurrentUser implements Serializable {
 
     private Byte delFlag;
 
-    private List<CurrentMenu> currentMenuList;
-    private List<CurrentRole> currentRoleList;
+    private transient List<CurrentMenu> currentMenuList;
+    private transient List<CurrentRole> currentRoleList;
     private static final long serialVersionUID = 1L;
 
     public CurrentUser(String id, String username, Integer age, String email, String photo,

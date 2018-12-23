@@ -7,6 +7,7 @@ package com.qpp.common.constant.enums;
  * @Date 10:51 2018/10/31
  */
 public enum ResponseConstants {
+
     /**
      * @Fields REQUEST_SUCCESS : TODO(请求调用成功)
      */

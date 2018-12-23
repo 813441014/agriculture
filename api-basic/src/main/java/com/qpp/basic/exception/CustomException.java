@@ -1,5 +1,6 @@
 package com.qpp.basic.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author qipengpai
  */
+@Slf4j
 public class CustomException implements HandlerExceptionResolver {
-  private static Logger log= LoggerFactory.getLogger(CustomException.class);
 
   @Override
   public ModelAndView resolveException(HttpServletRequest httpServletRequest,
@@ -24,7 +25,7 @@ public class CustomException implements HandlerExceptionResolver {
       mv.setViewName("/login");
       return mv;
     }
-   e.printStackTrace();
+    e.printStackTrace();
     MyException myExecption=null;
     if(e instanceof MyException){
       myExecption=(MyException)e;

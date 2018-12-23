@@ -11,6 +11,7 @@ import com.qpp.basic.exception.MyException;
 import com.qpp.basic.util.JsonUtil;
 import com.qpp.common.utils.bean.BeanUtils;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 /**
  * @author qipengpai
  * 菜单
  */
+@Slf4j
 @Controller
 @RequestMapping(value = "/menu")
 public class MenuController extends BaseController {
+
+  private static final String MENU = "menus";
 
   @Autowired
   private MenuService menuService;
@@ -40,19 +45,19 @@ public class MenuController extends BaseController {
    * @return
    */
   @ApiOperation(value = "/showMenu", httpMethod = "GET", notes = "展示菜单")
-  @Log(desc = "展示菜单",type = Log.LOG_TYPE.SELECT)
+  //@Log(desc = "展示菜单",type = Log.LOG_TYPE.SELECT)
   @GetMapping(value = "showMenu")
   @RequiresPermissions("menu:show")
   public String showMenu(Model model){
     JSONArray ja=menuService.getMenuJsonList();
-    model.addAttribute("menus", ja.toJSONString());
+    model.addAttribute(MENU, ja.toJSONString());
     return "/system/menu/menuList";
   }
 
   @GetMapping(value = "showAddMenu")
   public String addMenu(Model model){
     JSONArray ja=menuService.getMenuJsonList();
-    model.addAttribute("menus", ja.toJSONString());
+    model.addAttribute(MENU, ja.toJSONString());
     return "/system/menu/add-menu";
   }
 
@@ -71,12 +76,12 @@ public class MenuController extends BaseController {
     }
     JsonUtil jsonUtil=new JsonUtil();
     jsonUtil.setFlag(false);
-    if(sysMenu==null){
+    if(null == sysMenu){
       jsonUtil.setMsg("获取数据失败");
       return jsonUtil;
     }
     try{
-      if(sysMenu.getMenuType()==2){
+      if(sysMenu.getMenuType() == 2){
         sysMenu.setMenuType((byte)0);
       }
       menuService.insertSelective(sysMenu);
@@ -106,7 +111,7 @@ public class MenuController extends BaseController {
       roleMenuService.deleteByMenuId(id);
       menuService.deleteByPrimaryKey(id);
     } catch (MyException e) {
-      e.printStackTrace();
+      log.error("[MenuController]{del} -> error!",e);
     }
     return "删除成功";
   }

@@ -4,7 +4,6 @@ package com.qpp.admin.mapper.system;
 import com.qpp.admin.controller.view.ChannelAccountView;
 import com.qpp.admin.entity.system.DataChild;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

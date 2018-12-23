@@ -2,6 +2,7 @@ package com.qpp.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
+import javax.annotation.Nonnull;
 import java.security.MessageDigest;
 
 /**
@@ -13,6 +14,8 @@ import java.security.MessageDigest;
  */
 @Slf4j
 public class Md5Utils {
+
+    private Md5Utils(){}
 
     private static final String UTF_8= "UTF-8";
 
@@ -27,14 +30,14 @@ public class Md5Utils {
         } catch (Exception e) {
             log.error("MD5 Error...", e);
         }
-        return null;
+        return IpUtils.NULL_BYTEARRAY;
     }
 
     private static final String toHex(byte hash[]) {
         if (hash == null) {
             return null;
         }
-        StringBuffer buf = new StringBuffer(hash.length * 2);
+        StringBuilder buf = new StringBuilder(hash.length * 2);
         int i;
 
         for (i = 0; i < hash.length; i++) {
@@ -46,7 +49,7 @@ public class Md5Utils {
         return buf.toString();
     }
 
-    public static String hash(String s) {
+    public static String hash(@Nonnull String s) {
         try {
             return new String(toHex(md5(s)).getBytes(UTF_8), UTF_8);
         }

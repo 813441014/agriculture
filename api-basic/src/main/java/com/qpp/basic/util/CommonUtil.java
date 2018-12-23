@@ -11,6 +11,8 @@ import org.apache.shiro.session.Session;
  */
 public class CommonUtil {
 
+  private CommonUtil(){}
+
   /**
    * 获取当前用户
    */
@@ -20,17 +22,3 @@ public class CommonUtil {
     return (CurrentUser) session.getAttribute("curentUser");
   }
 }
-
-  /**
-   * 获取权限
-   * @return
-   */
-  /*public static List<SysPermission> getPermission(){
-    SysUser user=CommonUtil.getUser();
-    if(user!=null){
-
-    }
-  }
-
-}
-*/

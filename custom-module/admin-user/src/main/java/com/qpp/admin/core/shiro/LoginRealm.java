@@ -5,12 +5,11 @@ import com.qpp.admin.entity.system.SysMenu;
 import com.qpp.admin.entity.system.SysRole;
 import com.qpp.admin.entity.system.SysUser;
 import com.qpp.admin.service.system.MenuService;
-import com.qpp.admin.service.system.RoleMenuService;
-import com.qpp.admin.service.system.RoleUserService;
 import com.qpp.admin.service.system.SysUserService;
 import com.qpp.basic.base.bean.CurrentMenu;
 import com.qpp.basic.base.bean.CurrentRole;
 import com.qpp.basic.base.bean.CurrentUser;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -21,9 +20,6 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +32,7 @@ import java.util.List;
  * @Description //TODO realm
  * @Date 11:37 2018/12/19
  **/
+@Slf4j
 public class LoginRealm extends AuthorizingRealm{
 
 
@@ -45,11 +42,6 @@ public class LoginRealm extends AuthorizingRealm{
   @Autowired
   private MenuService menuService;
 
-  @Autowired
-  private RoleUserService roleUserService;
-
-  @Autowired
-  private RoleMenuService roleMenuService;
 
   /**
    * @Author qipengpai
@@ -62,7 +54,6 @@ public class LoginRealm extends AuthorizingRealm{
   @Override
   protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
     SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-    String name= (String) principalCollection.getPrimaryPrincipal();
     //根据用户获取角色 根据角色获取所有按钮权限
     CurrentUser cUser= (CurrentUser) ShiroUtil.getSession().getAttribute("curentUser");
     for(CurrentRole cRole:cUser.getCurrentRoleList()){
@@ -86,14 +77,12 @@ public class LoginRealm extends AuthorizingRealm{
   @Override
   protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
           throws AuthenticationException {
-    UsernamePasswordToken upToken = (UsernamePasswordToken) authenticationToken;
-    String name=upToken.getUsername();
     String username=(String)authenticationToken.getPrincipal();
     SysUser s=null;
     try {
       s = userService.login(username);
     }catch (Exception e){
-      e.printStackTrace();
+      log.error("[LoginRealm]{doGetAuthenticationInfo} -> error!",e);
     }
     if(s==null){
       throw new UnknownAccountException("账户密码不正确");

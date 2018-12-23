@@ -39,6 +39,10 @@ import java.util.List;
 @Controller
 public class LoginController {
 
+    private static final String MAIN = "/main/main";
+    private static final String LOGIN = "/login";
+    private static final String MESSAGE = "message";
+
     @Autowired
     private SysUserService userService;
 
@@ -54,63 +58,63 @@ public class LoginController {
     public String goLogin(Model model, ServletRequest request) {
         Subject sub = SecurityUtils.getSubject();
         if (sub.isAuthenticated()) {
-            return "/main/main";
+            return MAIN;
         } else {
-            model.addAttribute("message", "请重新登录");
-            return "/login";
+            model.addAttribute(MESSAGE, "请重新登录");
+            return LOGIN;
         }
     }
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = LOGIN)
     public String loginCheck() {
         Subject sub = SecurityUtils.getSubject();
         Boolean flag2 = sub.isRemembered();
         boolean flag = sub.isAuthenticated() || flag2;
         Session session = sub.getSession();
         if (flag) {
-            return "/main/main";
+            return MAIN;
         }
-        return "/login";
+        return LOGIN;
     }
 
     /**
-     * 登录动作
-     *
-     * @param user
-     * @param model
-     * @param rememberMe
-     * @return
-     */
-    @ApiOperation(value = "/login", httpMethod = "POST", notes = "登录method")
-    @PostMapping(value = "/login")
+     * @Author qipengpai
+     * @Description //TODO 登录动作
+     * @Date 2018/12/23 18:06
+     * @Param [user, model, rememberMe, request]
+     * @return java.lang.String
+     * @throws
+     **/
+    @ApiOperation(value = LOGIN, httpMethod = "POST", notes = "登录method")
+    @PostMapping(value = LOGIN)
     public String login(SysUser user, Model model, String rememberMe, HttpServletRequest request) {
         String codeMsg = (String) request.getAttribute("shiroLoginFailure");
-        if ("code.error".equals(codeMsg)) {
-            model.addAttribute("message", "验证码错误");
-            return "/login";
+        if("code.error".equals(codeMsg)){
+            model.addAttribute(MESSAGE, "验证码错误");
+            return LOGIN;
         }
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername().trim(), user.getPassword());
         Subject subject = ShiroUtil.getSubject();
         String msg = null;
-        try {
+        try{
             subject.login(token);
             //subject.hasRole("admin");
-            if (subject.isAuthenticated()) {
+            if(subject.isAuthenticated()){
                 SysUser sysUser = this.userService.login(user.getUsername().trim());
-                if (sysUser != null) {
+                if(sysUser != null){
                     if ("third".equals(sysUser.getPhoto())) {
                         byte delFlag = 1;
                         if (sysUser.getDelFlag() == delFlag) {
                             msg = "账号状态异常，请联系管理员";
                         } else {
                             request.getSession(false).setAttribute("currentUser", sysUser);
-                            return "/main/main";
+                            return MAIN;
                         }
-                    } else {
+                    }else{
                         request.getSession(false).setAttribute("currentUser", sysUser);
-                        return "/main/main";
+                        return MAIN;
                     }
-                } else {
+                }else{
                     msg = "登陆失败！";
                 }
             }
@@ -123,9 +127,9 @@ public class LoginController {
             msg = "登录失败多次，账户锁定10分钟";
         }
         if (msg != null) {
-            model.addAttribute("message", msg);
+            model.addAttribute(MESSAGE, msg);
         }
-        return "/login";
+        return LOGIN;
     }
 
     @Log(desc = "用户退出平台")
@@ -133,7 +137,7 @@ public class LoginController {
     public String logout() {
         Subject sub = SecurityUtils.getSubject();
         sub.logout();
-        return "/login";
+        return LOGIN;
     }
 
     /**

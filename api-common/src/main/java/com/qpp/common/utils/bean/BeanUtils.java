@@ -1,9 +1,11 @@
 package com.qpp.common.utils.bean;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,7 +21,10 @@ import java.util.regex.Pattern;
  * @Description: TODO Bean 工具类
  * @date 10:30 2018/10/22
  */
+@Slf4j
 public class BeanUtils {
+
+    private BeanUtils(){}
 
     /** Bean方法名中属性名开始的下标 */
     private static final int BEAN_METHOD_PROP_INDEX = 3;
@@ -141,5 +146,32 @@ public class BeanUtils {
      */
     public static void copyNotNullBean(Object source, Object target) {
         org.springframework.beans.BeanUtils.copyProperties(source, target, getNullPropertyNames(source));
+    }
+
+    /**
+     * @Author qipengpai
+     * @Description //TODO 判断该对象是否: 返回ture表示所有属性为null  返回false表示不是所有属性都是null
+     * @Date 2018/12/23 21:49
+     * @Param [obj]
+     * @return boolean
+     * @throws
+     **/
+    public static boolean checkFieldAllNull(Object obj){
+        Class stuCla = (Class) obj.getClass();// 得到类对象
+        Field[] fs = stuCla.getDeclaredFields();//得到属性集合
+        boolean flag = true;
+        try {
+        for (Field f : fs) {//遍历属性
+            f.setAccessible(true); // 设置属性是可以访问的(私有的也可以)
+            Object val = f.get(obj);
+            if(val==null) {//只要有1个属性为空
+                flag = false;
+                break;
+            }
+        }
+        } catch (IllegalAccessException e) {
+            log.error("[BeanUtils]{checkFieldAllNull} -> error!",e);
+        }
+        return flag;
     }
 }

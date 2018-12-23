@@ -44,8 +44,7 @@ public class BaseEntity implements Serializable {
     /** 请求参数 */
     private Map<String, Object> params;
 
-    public Map<String, Object> getParams()
-    {
+    public Map<String, Object> getParams() {
         if (params == null)
         {
             params = new HashMap<>();

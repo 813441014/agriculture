@@ -36,7 +36,7 @@ public interface ShiroConstants {
     /**
      * 当前在线会话
      */
-    public String ONLINE_SESSION = "online_session";
+    String ONLINE_SESSION = "online_session";
 
     /**
      * 验证码key

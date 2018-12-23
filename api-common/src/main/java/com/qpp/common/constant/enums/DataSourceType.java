@@ -5,8 +5,7 @@ package com.qpp.common.constant.enums;
  * 
  * @author ruoyi
  */
-public enum DataSourceType
-{
+public enum DataSourceType {
     /**
      * 主库
      */

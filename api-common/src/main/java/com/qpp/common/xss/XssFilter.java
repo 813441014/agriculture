@@ -4,7 +4,6 @@ import com.qpp.common.utils.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +50,7 @@ public class XssFilter implements Filter {
             throws IOException, ServletException
     {
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
-        if (handleExcludeURL(req, resp))
+        if (handleExcludeURL(req))
         {
             chain.doFilter(request, response);
             return;
@@ -61,19 +59,15 @@ public class XssFilter implements Filter {
         chain.doFilter(xssRequest, response);
     }
 
-    private boolean handleExcludeURL(HttpServletRequest request, HttpServletResponse response)
-    {
-        if (!enabled)
-        {
+    private boolean handleExcludeURL(HttpServletRequest request) {
+        if (!enabled) {
             return true;
         }
-        if (excludes == null || excludes.isEmpty())
-        {
+        if (excludes == null || excludes.isEmpty()) {
             return false;
         }
         String url = request.getServletPath();
-        for (String pattern : excludes)
-        {
+        for (String pattern : excludes) {
             Pattern p = Pattern.compile("^" + pattern);
             Matcher m = p.matcher(url);
             if (m.find())
@@ -85,8 +79,7 @@ public class XssFilter implements Filter {
     }
 
     @Override
-    public void destroy()
-    {
-
+    public void destroy() {
+        throw new UnsupportedOperationException("destroy error!");
     }
 }

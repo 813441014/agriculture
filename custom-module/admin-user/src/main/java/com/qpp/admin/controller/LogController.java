@@ -9,7 +9,7 @@ import com.qpp.basic.base.BaseController;
 import com.qpp.basic.exception.MyException;
 import com.qpp.basic.util.JsonUtil;
 import com.qpp.basic.util.ReType;
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +26,10 @@ import java.util.List;
  *
  * 日志监控
  */
+@Slf4j
 @Controller
 @RequestMapping(value = "/log")
 public class LogController  extends BaseController {
-    private static final Logger logger= Logger.getLogger(LogController.class);
     @Autowired
     private SysLogMapper logMapper;
 
@@ -53,8 +53,7 @@ public class LogController  extends BaseController {
         try{
             tList=logMapper.selectListByPage(sysLog);
         }catch (MyException e){
-            logger.error("class:LogController ->method:showLog->message:"+e.getMessage());
-            e.printStackTrace();
+            log.error("[LogController]{showLog} -> error",e);
         }
         ReType reType=new ReType(tPage.getTotal(),tList);
         return JSON.toJSONString(reType);
@@ -72,10 +71,9 @@ public class LogController  extends BaseController {
         String msg="删除成功";
         try{
             for(String id:ids)
-            logMapper.deleteByPrimaryKey(Integer.valueOf(id));
+                logMapper.deleteByPrimaryKey(Integer.valueOf(id));
         }catch (MyException e){
-            msg="删除失败";
-            logger.error(msg+e.getMessage());
+            log.error("[LogController]{showLog} -> error",e);
         }
         j.setMsg(msg);
         return j;

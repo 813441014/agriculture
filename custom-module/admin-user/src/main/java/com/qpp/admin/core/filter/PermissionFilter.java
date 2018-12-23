@@ -31,7 +31,6 @@ public class PermissionFilter extends AuthorizationFilter {
   @Override
   protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse,
                                     Object o) throws Exception {
-    String[] roles=(String[])o;
     Subject sub = getSubject(servletRequest, servletResponse);
     Session session= sub.getSession();
     CurrentUser user= (CurrentUser) session.getAttribute("curentUser");

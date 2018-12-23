@@ -1,4 +1,4 @@
-package com.qpp.common.support;
+package com.qpp.common.utils.support;
 
 import com.qpp.common.utils.StringUtils;
 
@@ -17,6 +17,10 @@ import java.util.Set;
  * @date 10:30 2018/10/22
  */
 public class Convert {
+
+    private Convert(){}
+
+    private static final String ZERO_SPOT ="(零.)+";
     /**
      * 转换为字符串<br>
      * 如果给定的值为null，或者转换失败，返回默认值<br>
@@ -58,12 +62,10 @@ public class Convert {
      * @return 结果
      */
     public static Character toChar(Object value, Character defaultValue) {
-        if (null == value)
-        {
+        if (null == value) {
             return defaultValue;
         }
-        if (value instanceof Character)
-        {
+        if (value instanceof Character) {
             return (Character) value;
         }
 
@@ -687,39 +689,30 @@ public class Convert {
      * @param defaultValue 转换错误时的默认值
      * @return 结果
      */
-    public static BigDecimal toBigDecimal(Object value, BigDecimal defaultValue)
-    {
-        if (value == null)
-        {
+    public static BigDecimal toBigDecimal(Object value, BigDecimal defaultValue) {
+        if (value == null) {
             return defaultValue;
         }
-        if (value instanceof BigDecimal)
-        {
+        if (value instanceof BigDecimal) {
             return (BigDecimal) value;
         }
-        if (value instanceof Long)
-        {
-            return new BigDecimal((Long) value);
+        if (value instanceof Long) {
+            return BigDecimal.valueOf((Long) value);
         }
-        if (value instanceof Double)
-        {
-            return new BigDecimal((Double) value);
+        if (value instanceof Double) {
+            return BigDecimal.valueOf((Double) value);
         }
-        if (value instanceof Integer)
-        {
-            return new BigDecimal((Integer) value);
+        if (value instanceof Integer) {
+            return BigDecimal.valueOf((Integer) value);
         }
         final String valueStr = toStr(value, null);
-        if (StringUtils.isEmpty(valueStr))
-        {
+        if (StringUtils.isEmpty(valueStr)) {
             return defaultValue;
         }
-        try
-        {
+        try {
             return new BigDecimal(valueStr);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             return defaultValue;
         }
     }
@@ -732,8 +725,7 @@ public class Convert {
      * @param value 被转换的值
      * @return 结果
      */
-    public static BigDecimal toBigDecimal(Object value)
-    {
+    public static BigDecimal toBigDecimal(Object value) {
         return toBigDecimal(value, null);
     }
 
@@ -744,8 +736,7 @@ public class Convert {
      * @param obj 对象
      * @return 字符串
      */
-    public static String utf8Str(Object obj)
-    {
+    public static String utf8Str(Object obj) {
         return str(obj, CharsetKit.CHARSET_UTF_8);
     }
 
@@ -950,8 +941,7 @@ public class Convert {
      * @param n 数字
      * @return 中文大写数字
      */
-    public static String digitUppercase(double n)
-    {
+    public static String digitUppercase(double n) {
         String[] fraction = { "角", "分" };
         String[] digit = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
         String[][] unit = { { "元", "万", "亿" }, { "", "拾", "佰", "仟" } };
@@ -960,9 +950,8 @@ public class Convert {
         n = Math.abs(n);
 
         String s = "";
-        for (int i = 0; i < fraction.length; i++)
-        {
-            s += (digit[(int) (Math.floor(n * 10 * Math.pow(10, i)) % 10)] + fraction[i]).replaceAll("(零.)+", "");
+        for (int i = 0; i < fraction.length; i++) {
+            s += (digit[(int) (Math.floor(n * 10 * Math.pow(10, i)) % 10)] + fraction[i]).replaceAll(ZERO_SPOT, "");
         }
         if (s.length() < 1)
         {
@@ -980,6 +969,6 @@ public class Convert {
             }
             s = p.replaceAll("(零.)*零$", "").replaceAll("^$", "零") + unit[0][i] + s;
         }
-        return head + s.replaceAll("(零.)*零元", "元").replaceFirst("(零.)+", "").replaceAll("(零.)+", "零").replaceAll("^整$", "零元整");
+        return head + s.replaceAll("(零.)*零元", "元").replaceFirst(ZERO_SPOT, "").replaceAll(ZERO_SPOT, "零").replaceAll("^整$", "零元整");
     }
 }

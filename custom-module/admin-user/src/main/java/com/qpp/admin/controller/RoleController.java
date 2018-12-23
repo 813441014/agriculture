@@ -14,6 +14,7 @@ import com.qpp.basic.exception.MyException;
 import com.qpp.basic.util.JsonUtil;
 import com.qpp.common.utils.bean.BeanUtils;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ import java.util.List;
  * @author qipengpai
  * 角色业务
  */
+@Slf4j
 @Controller
 @RequestMapping(value = "/role")
 public class RoleController extends BaseController {
@@ -82,12 +84,12 @@ public class RoleController extends BaseController {
       sysRoleMenu.setRoleId(sysRole.getId());
 
       if(menus!=null)
-      for(String menu:menus){
-        sysRoleMenu.setMenuId(menu);
-        roleMenuService.insert(sysRoleMenu);
-      }
+        for(String menu:menus){
+          sysRoleMenu.setMenuId(menu);
+          roleMenuService.insert(sysRoleMenu);
+        }
     }catch (MyException e){
-      e.printStackTrace();
+      log.error("[RoleController]{addRole} -> error!",e);
     }
     return "保存成功";
   }
@@ -127,14 +129,14 @@ public class RoleController extends BaseController {
         roleMenuService.deleteByPrimaryKey(sysRoleMenu1);
       }
       if(menus!=null)
-      for(String menu:menus){
-        sysRoleMenu.setMenuId(menu);
-        roleMenuService.insert(sysRoleMenu);
-      }
+        for(String menu:menus){
+          sysRoleMenu.setMenuId(menu);
+          roleMenuService.insert(sysRoleMenu);
+        }
       jsonUtil.setFlag(true);
       jsonUtil.setMsg("修改成功");
     } catch (MyException e) {
-      e.printStackTrace();
+      log.error("[RoleController]{updateUser} -> error!",e);
     }
     return jsonUtil;
   }
@@ -157,7 +159,7 @@ public class RoleController extends BaseController {
      }
         roleService.deleteByPrimaryKey(id);
     } catch (MyException e) {
-      e.printStackTrace();
+      log.error("[RoleController]{del} -> error!",e);
     }
     return "删除成功";
   }

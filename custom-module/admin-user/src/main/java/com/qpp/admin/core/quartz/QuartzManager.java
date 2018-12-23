@@ -84,7 +84,7 @@ public class QuartzManager {
 		 * 41 48 16 9 12 ? 2015
 		 * 秒   分   时   天   月   月中的星期  年
 		 */
-		StringBuffer expression = new StringBuffer();
+		StringBuilder expression = new StringBuilder();
 		expression.append(runDate.getSeconds()+" ");
 		expression.append(runDate.getMinutes()+" ");
 		expression.append(runDate.getHours()+" ");

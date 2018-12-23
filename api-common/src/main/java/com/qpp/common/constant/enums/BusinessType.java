@@ -2,7 +2,7 @@ package com.qpp.common.constant.enums;
 
 /**
  * @ClassName BusinessType
- * @Description TODO
+ * @Description TODO 操作类型
  * @Author qipengpai
  * @Date 2018/10/23 10:26
  * @Version 1.0.1

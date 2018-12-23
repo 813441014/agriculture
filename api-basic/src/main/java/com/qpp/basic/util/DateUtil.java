@@ -4,9 +4,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * created by fuyd on 2018/05/03
+ * created by qipengpai on 2018/05/03
  */
 public class DateUtil {
+
+    private DateUtil(){}
 
     /**
      * 获取日期的最开始时间
@@ -57,6 +59,7 @@ public class DateUtil {
         Date udate = calendar.getTime();
         return udate;
     }
+
     public static int getYear(Date date) {
         Calendar cl = Calendar.getInstance();
         cl.setTime(date);

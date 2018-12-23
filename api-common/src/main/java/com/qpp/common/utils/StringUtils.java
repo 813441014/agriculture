@@ -1,6 +1,6 @@
 package com.qpp.common.utils;
 
-import com.qpp.common.support.StrFormatter;
+import com.qpp.common.utils.support.StrFormatter;
 
 import java.util.Collection;
 import java.util.Map;

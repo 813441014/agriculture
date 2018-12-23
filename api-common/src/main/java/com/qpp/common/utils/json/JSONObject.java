@@ -1,4 +1,4 @@
-package com.qpp.common.json;
+package com.qpp.common.utils.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qpp.common.utils.StringUtils;
@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
  * 
  * @author qpp
  */
-public class JSONObject extends LinkedHashMap<String, Object>
-{
+public class JSONObject extends LinkedHashMap<String, Object> {
     private static final long serialVersionUID = 1L;
     private static final Pattern arrayNamePattern = Pattern.compile("(\\w+)((\\[\\d+\\])+)");
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -21,8 +20,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
     /**
      * 数组结构。
      */
-    public static class JSONArray extends ArrayList<Object>
-    {
+    public static class JSONArray extends ArrayList<Object> {
         private static final long serialVersionUID = 1L;
 
         public JSONArray()
@@ -36,39 +34,32 @@ public class JSONObject extends LinkedHashMap<String, Object>
         }
 
         @Override
-        public String toString()
-        {
-            try
-            {
+        public String toString() {
+            try {
                 return JSON.marshal(this);
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
 
         @Override
-        public Object set(int index, Object element)
-        {
+        public Object set(int index, Object element) {
             return super.set(index, transfer(element));
         }
 
         @Override
-        public boolean add(Object element)
-        {
+        public boolean add(Object element) {
             return super.add(transfer(element));
         }
 
         @Override
-        public void add(int index, Object element)
-        {
+        public void add(int index, Object element) {
             super.add(index, transfer(element));
         }
     }
 
-    public JSONObject()
-    {
+    public JSONObject() {
         super();
     }
 
@@ -78,14 +69,11 @@ public class JSONObject extends LinkedHashMap<String, Object>
     }
 
     @Override
-    public String toString()
-    {
-        try
-        {
+    public String toString() {
+        try {
             return JSON.marshal(this);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -95,14 +83,11 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * 
      * @return 返回本对象紧凑格式字符串。
      */
-    public String toCompactString()
-    {
-        try
-        {
+    public String toCompactString() {
+        try {
             return objectMapper.writeValueAsString(this);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -113,8 +98,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名，支持多级。
      * @return 返回指定的整数值，或者null。
      */
-    public Integer intValue(final String name)
-    {
+    public Integer intValue(final String name) {
         return valueAsInt(value(name));
     }
 
@@ -125,8 +109,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param defaultValue 查询失败时，返回的值。
      * @return 返回指定的整数值，或者defaultValue。
      */
-    public Integer intValue(final String name, final Integer defaultValue)
-    {
+    public Integer intValue(final String name, final Integer defaultValue) {
         return StringUtils.nvl(intValue(name), defaultValue);
     }
 
@@ -136,8 +119,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名，支持多级。
      * @return 返回指定的长整数值，或者null。
      */
-    public Long longValue(final String name)
-    {
+    public Long longValue(final String name ){
         return valueAsLong(value(name));
     }
 
@@ -148,8 +130,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param defaultValue 查询失败时，返回的值。
      * @return 返回指定的长整数值，或者defaultValue。
      */
-    public Long longValue(final String name, final Long defaultValue)
-    {
+    public Long longValue(final String name, final Long defaultValue) {
         return StringUtils.nvl(longValue(name), defaultValue);
     }
 
@@ -159,8 +140,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名，支持多级。
      * @return 返回指定的布尔值，或者null。
      */
-    public Boolean boolValue(final String name)
-    {
+    public Boolean boolValue(final String name) {
         return valueAsBool(value(name));
     }
 
@@ -171,8 +151,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param defaultValue 查询失败时，返回的值。
      * @return 返回指定的布尔值，或者defaultValue。
      */
-    public Boolean boolValue(final String name, final Boolean defaultValue)
-    {
+    public Boolean boolValue(final String name, final Boolean defaultValue) {
         return StringUtils.nvl(boolValue(name), defaultValue);
     }
 
@@ -182,8 +161,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名，支持多级。
      * @return 返回指定的字符串值，或者null。
      */
-    public String strValue(final String name)
-    {
+    public String strValue(final String name) {
         return valueAsStr(value(name));
     }
 
@@ -194,8 +172,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param defaultValue 查询失败时，返回的值。
      * @return 返回指定的字符串值，或者defaultValue。
      */
-    public String strValue(final String name, final String defaultValue)
-    {
+    public String strValue(final String name, final String defaultValue) {
         return StringUtils.nvl(strValue(name), defaultValue);
     }
 
@@ -205,28 +182,22 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名，支持多级，支持数组下标。
      * @return 返回指定字段的值。
      */
-    public Object value(final String name)
-    {
+    public Object value(final String name) {
         final int indexDot = name.indexOf('.');
-        if (indexDot >= 0)
-        {
+        if (indexDot >= 0) {
             return obj(name.substring(0, indexDot)).value(name.substring(indexDot + 1));
         }
-        else
-        {
+        else {
             final Matcher matcher = arrayNamePattern.matcher(name);
-            if (matcher.find())
-            {
-                return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<Object>()
-                {
+            if (matcher.find()) {
+                return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<Object>() {
                     public Object callback(JSONArray arr, int index)
                     {
                         return elementAt(arr, index);
                     }
                 });
             }
-            else
-            {
+            else {
                 return get(name);
             }
         }
@@ -239,29 +210,22 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param value 字段值。
      * @return 返回本对象。
      */
-    public JSONObject value(final String name, final Object value)
-    {
+    public JSONObject value(final String name, final Object value) {
         final int indexDot = name.indexOf('.');
-        if (indexDot >= 0)
-        {
+        if (indexDot >= 0) {
             obj(name.substring(0, indexDot)).value(name.substring(indexDot + 1), value);
         }
-        else
-        {
+        else {
             final Matcher matcher = arrayNamePattern.matcher(name);
-            if (matcher.find())
-            {
-                endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<Void>()
-                {
-                    public Void callback(JSONArray arr, int index)
-                    {
+            if (matcher.find()) {
+                endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<Void>() {
+                    public Void callback(JSONArray arr, int index) {
                         elementAt(arr, index, value);
                         return null;
                     }
                 });
             }
-            else
-            {
+            else {
                 set(name, value);
             }
         }
@@ -274,24 +238,19 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名。不支持多级名字，支持数组下标。
      * @return 返回指定的对象。如果对象不存在，则为指定的名字创建一个空的MessageObject对象。
      */
-    public JSONObject obj(final String name)
-    {
+    public JSONObject obj(final String name) {
         final Matcher matcher = arrayNamePattern.matcher(name);
-        if (matcher.find())
-        {
-            return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<JSONObject>()
-            {
+        if (matcher.find()) {
+            return endArray(matcher.group(1), matcher.group(2), new EndArrayCallback<JSONObject>() {
                 public JSONObject callback(JSONArray arr, int index)
                 {
                     return objAt(arr, index);
                 }
             });
         }
-        else
-        {
+        else {
             JSONObject obj = getObj(name);
-            if (obj == null)
-            {
+            if (obj == null){
                 obj = new JSONObject();
                 put(name, obj);
             }
@@ -305,11 +264,9 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名。不支持多级名字，不支持下标。
      * @return 返回一个数组（List）。
      */
-    public JSONArray arr(final String name)
-    {
+    public JSONArray arr(final String name) {
         JSONArray arr = getArr(name);
-        if (arr == null)
-        {
+        if (arr == null) {
             arr = new JSONArray();
             put(name, arr);
         }
@@ -333,8 +290,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名。
      * @return 返回数组类型字段。
      */
-    public JSONArray getArr(final String name)
-    {
+    public JSONArray getArr(final String name) {
         return (JSONArray) get(name);
     }
 
@@ -356,8 +312,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param defaultValue 字段不存在时，返回的值。
      * @return 返回指定字段整数值。
      */
-    public Integer getInt(final String name, Integer defaultValue)
-    {
+    public Integer getInt(final String name, Integer defaultValue) {
         return StringUtils.nvl(getInt(name), defaultValue);
     }
 
@@ -367,8 +322,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名。
      * @return 返回指定字段长整数值。
      */
-    public Long getLong(final String name)
-    {
+    public Long getLong(final String name) {
         return valueAsLong(get(name));
     }
 
@@ -379,8 +333,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param defaultValue 字段不存在时，返回的值。
      * @return 返回指定字段长整数值。
      */
-    public Long getLong(final String name, Long defaultValue)
-    {
+    public Long getLong(final String name, Long defaultValue) {
         return StringUtils.nvl(getLong(name), defaultValue);
     }
 
@@ -390,8 +343,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param name 字段名。
      * @return 返回指定字段字符串值。
      */
-    public String getStr(final String name)
-    {
+    public String getStr(final String name) {
         return valueAsStr(get(name));
     }
 
@@ -402,8 +354,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param defaultValue 字段不存在时，返回的值。
      * @return 返回指定字段字符串值。
      */
-    public String getStr(final String name, final String defaultValue)
-    {
+    public String getStr(final String name, final String defaultValue) {
         return StringUtils.nvl(getStr(name), defaultValue);
     }
 
@@ -425,8 +376,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param defaultValue 字段不存在时，返回的值。
      * @return 字段值。
      */
-    public Boolean getBool(final String name, final Boolean defaultValue)
-    {
+    public Boolean getBool(final String name, final Boolean defaultValue) {
         return StringUtils.nvl(getBool(name), defaultValue);
     }
 
@@ -438,8 +388,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      *            （此时，再修改Map中的数据，将不会体现到本对象中）。
      * @return 返回本对象
      */
-    public JSONObject set(final String name, final Object value)
-    {
+    public JSONObject set(final String name, final Object value) {
         put(name, value);
         return this;
     }
@@ -450,14 +399,11 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param beanClass Java Bean的类对象。
      * @return 返回转换后的Java Bean。
      */
-    public <T> T asBean(Class<T> beanClass)
-    {
-        try
-        {
+    public <T> T asBean(Class<T> beanClass) {
+        try {
             return JSON.unmarshal(JSON.marshal(this), beanClass);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -467,92 +413,70 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * MessageObject 中）。 重载此方法的目的是为了使JSON能够正确地解析为MessageObject对象。不建议直接调用此方法，请使用 set(name, value)方法设置字段值。
      */
     @Override
-    public Object put(String key, Object value)
-    {
+    public Object put(String key, Object value) {
         return super.put(key, transfer(value));
     }
 
-    public static Integer valueAsInt(Object value)
-    {
-        if (value instanceof Integer)
-        {
+    public static Integer valueAsInt(Object value) {
+        if (value instanceof Integer) {
             return (Integer) value;
         }
-        else if (value instanceof Number)
-        {
+        else if (value instanceof Number) {
             return ((Number) value).intValue();
         }
-        else if (value instanceof String)
-        {
+        else if (value instanceof String) {
             return Integer.valueOf((String) value);
         }
-        else if (value instanceof Boolean)
-        {
+        else if (value instanceof Boolean) {
             return ((Boolean) value) ? 1 : 0;
         }
-        else
-        {
+        else {
             return null;
         }
     }
 
-    public static Long valueAsLong(Object value)
-    {
-        if (value instanceof Long)
-        {
+    public static Long valueAsLong(Object value) {
+        if (value instanceof Long) {
             return (Long) value;
         }
-        else if (value instanceof Number)
-        {
+        else if (value instanceof Number) {
             return ((Number) value).longValue();
         }
-        else if (value instanceof String)
-        {
+        else if (value instanceof String) {
             return Long.valueOf((String) value);
         }
-        else if (value instanceof Boolean)
-        {
+        else if (value instanceof Boolean) {
             return ((Boolean) value) ? 1L : 0L;
         }
-        else
-        {
+        else {
             return null;
         }
     }
 
-    public static String valueAsStr(Object value)
-    {
-        if (value instanceof String)
-        {
+    public static String valueAsStr(Object value) {
+        if (value instanceof String) {
             return (String) value;
         }
-        else if (value != null)
-        {
+        else if (value != null) {
             return value.toString();
         }
-        else
-        {
+        else {
             return null;
         }
     }
 
-    public static Boolean valueAsBool(Object value)
-    {
-        if (value instanceof Boolean)
-        {
+    public static Boolean valueAsBool(Object value) {
+        if (value instanceof Boolean) {
             return (Boolean) value;
         }
-        else if (value instanceof Number)
-        {
+        else if (value instanceof Number) {
             return ((Number) value).doubleValue() != 0.0;
         }
-        else if (value instanceof String)
-        {
+        else if (value instanceof String) {
             return Boolean.valueOf((String) value);
         }
-        else
-        {
-            return null;
+        else {
+            return false;
         }
     }
 
@@ -563,37 +487,29 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @return 返回转换后的值。
      */
     @SuppressWarnings("unchecked")
-    private static Object transfer(final Object value)
-    {
-        if (!(value instanceof JSONObject) && value instanceof Map)
-        {
+    private static Object transfer(final Object value) {
+        if (!(value instanceof JSONObject) && value instanceof Map) {
             return toObj((Map<String, Object>) value);
         }
-        else if (!(value instanceof JSONArray) && value instanceof Collection)
-        {
+        else if (!(value instanceof JSONArray) && value instanceof Collection) {
             return toArr((Collection<Object>) value);
         }
-        else
-        {
+        else {
             return value;
         }
     }
 
-    private static JSONArray toArr(final Collection<Object> list)
-    {
+    private static JSONArray toArr(final Collection<Object> list) {
         final JSONArray arr = new JSONArray(list.size());
-        for (final Object element : list)
-        {
+        for (final Object element : list) {
             arr.add(element);
         }
         return arr;
     }
 
-    private static JSONObject toObj(final Map<String, Object> map)
-    {
+    private static JSONObject toObj(final Map<String, Object> map) {
         final JSONObject obj = new JSONObject();
-        for (final Map.Entry<String, Object> ent : map.entrySet())
-        {
+        for (final Map.Entry<String, Object> ent : map.entrySet()) {
             obj.put(ent.getKey(), transfer(ent.getValue()));
         }
         return obj;
@@ -606,11 +522,9 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param index 下标。
      * @return 返回当前数组指定下标的元素，该元素应该是一个数组。
      */
-    private static JSONArray arrayAt(JSONArray arr, int index)
-    {
+    private static JSONArray arrayAt(JSONArray arr, int index) {
         expand(arr, index);
-        if (arr.get(index) == null)
-        {
+        if (arr.get(index) == null) {
             arr.set(index, new JSONArray());
         }
         return (JSONArray) arr.get(index);
@@ -623,11 +537,9 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param index 下标。
      * @return 返回当前数组指定下标元素，该元素是一个结构体。
      */
-    private static JSONObject objAt(final JSONArray arr, int index)
-    {
+    private static JSONObject objAt(final JSONArray arr, int index) {
         expand(arr, index);
-        if (arr.get(index) == null)
-        {
+        if (arr.get(index) == null) {
             arr.set(index, new JSONObject());
         }
         return (JSONObject) arr.get(index);
@@ -640,8 +552,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param index 下标。
      * @param value 值。
      */
-    private static void elementAt(final JSONArray arr, final int index, final Object value)
-    {
+    private static void elementAt(final JSONArray arr, final int index, final Object value) {
         expand(arr, index).set(index, value);
     }
 
@@ -701,26 +612,22 @@ public class JSONObject extends LinkedHashMap<String, Object>
      * @param callback 回调函数。
      * @return 返回回调函数的返回值。
      */
-    private <T> T endArray(final String name, final String indexesStr, final EndArrayCallback<T> callback)
-    {
+    private <T> T endArray(final String name, final String indexesStr, final EndArrayCallback<T> callback) {
         JSONArray endArr = arr(name);
         final int[] indexes = parseIndexes(indexesStr);
         int i = 0;
-        while (i < indexes.length - 1)
-        {
+        while (i < indexes.length - 1) {
             endArr = arrayAt(endArr, indexes[i++]);
         }
         return callback.callback(endArr, indexes[i]);
     }
 
-    private static int[] parseIndexes(final String s)
-    {
+    private static int[] parseIndexes(final String s) {
         int[] indexes = null;
         List<Integer> list = new ArrayList<Integer>();
 
         final StringTokenizer st = new StringTokenizer(s, "[]");
-        while (st.hasMoreTokens())
-        {
+        while (st.hasMoreTokens()) {
             final int index = Integer.valueOf(st.nextToken());
             if (index < 0)
             {
@@ -732,8 +639,7 @@ public class JSONObject extends LinkedHashMap<String, Object>
 
         indexes = new int[list.size()];
         int i = 0;
-        for (Integer tmp : list.toArray(new Integer[list.size()]))
-        {
+        for (Integer tmp : list.toArray(new Integer[list.size()])) {
             indexes[i++] = tmp;
         }
 

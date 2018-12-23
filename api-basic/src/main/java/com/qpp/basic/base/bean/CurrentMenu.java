@@ -1,17 +1,15 @@
 package com.qpp.basic.base.bean;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 
 /**
  * @author qipengpai
  */
-@Getter
-@Setter
+@Data
 @ToString
+@NoArgsConstructor
 public class CurrentMenu {
     private String id;
 

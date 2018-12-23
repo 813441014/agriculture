@@ -10,6 +10,8 @@ package com.qpp.common.constant;
  */
 public class UserConstants {
 
+    private UserConstants(){}
+
     /** 正常状态 */
     public static final String NORMAL = "0";
 

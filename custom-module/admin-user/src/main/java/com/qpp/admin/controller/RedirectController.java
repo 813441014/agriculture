@@ -1,13 +1,16 @@
 package com.qpp.admin.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-//@Controller
+@Slf4j
+@Controller
 @RequestMapping("/redirect")
 public class RedirectController {
 
@@ -19,11 +22,14 @@ public class RedirectController {
      * @return org.springframework.web.servlet.view.RedirectView
      * @throws
      **/
-    @Deprecated
     @GetMapping(value = "/redis_client")
-    public String addMenu(Model model, HttpServletResponse response) throws Exception{
+    public String redisClient(Model model, HttpServletResponse response){
         response.setHeader("X-Frame-Options", "SAMEORIGIN");// 解决IFrame拒绝的问题
-        response.sendRedirect("http://47.105.194.152:8080/redis-admin");
+        try {
+            response.sendRedirect("http://47.105.194.152:8080/redis-admin");
+        } catch (IOException e) {
+            log.error("[RedirectController]{redisClient}-> error!",e);
+        }
         return "";
     }
 

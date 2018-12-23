@@ -20,6 +20,7 @@ import java.util.Map;
 public class Global {
 
     private static String NAME = "application.yml";
+    private static final String QPP_PROFILE = "qpp.profile";
 
     /**
      * 当前对象实例
@@ -50,11 +51,9 @@ public class Global {
     /**
      * 获取配置
      */
-    public static String getConfig(String key)
-    {
+    public static String getConfig(String key) {
         String value = map.get(key);
-        if (value == null)
-        {
+        if (value == null) {
             Map<?, ?> yamlMap = null;
             try
             {
@@ -73,88 +72,77 @@ public class Global {
     /**
      * 获取项目名称
      */
-    public static String getName()
-    {
-        return StringUtils.nvl(getConfig("qpp.name"), "misscy");
+    public static String getName() {
+        return StringUtils.nvl(getConfig("qpp.name"), "agriculture");
     }
 
     /**
      * 获取项目版本
      */
-    public static String getVersion()
-    {
+    public static String getVersion() {
         return StringUtils.nvl(getConfig("qpp.version"), "1.0.1");
     }
 
     /**
      * 获取版权年份
      */
-    public static String getCopyrightYear()
-    {
+    public static String getCopyrightYear() {
         return StringUtils.nvl(getConfig("qpp.copyrightYear"), "2018");
     }
 
     /**
      * 获取ip地址开关
      */
-    public static Boolean isAddressEnabled()
-    {
+    public static Boolean isAddressEnabled() {
         return Boolean.valueOf(getConfig("qpp.addressEnabled"));
     }
 
     /**
      * 获取文件上传路径
      */
-    public static String getProfile()
-    {
-        return getConfig("qpp.profile");
+    public static String getProfile() {
+        return getConfig(QPP_PROFILE);
     }
 
     /**
      * 获取头像上传路径
      */
-    public static String getAvatarPath()
-    {
-        return getConfig("qpp.profile") + "avatar/";
+    public static String getAvatarPath() {
+        return getConfig(QPP_PROFILE) + "avatar/";
     }
 
     /**
      * 获取下载上传路径
      */
-    public static String getDownloadPath()
-    {
-        return getConfig("qpp.profile") + "download/";
+    public static String getDownloadPath() {
+        return getConfig(QPP_PROFILE) + "download/";
     }
 
     /**
      * 获取作者
      */
-    public static String getAuthor()
-    {
+    public static String getAuthor() {
         return StringUtils.nvl(getConfig("gen.author"), "qpp");
     }
 
     /**
      * 生成包路径
      */
-    public static String getPackageName()
-    {
+    public static String getPackageName() {
         return StringUtils.nvl(getConfig("gen.packageName"), "com.qpp.project.module");
     }
 
     /**
      * 是否自动去除表前缀
      */
-    public static String getAutoRemovePre()
-    {
+    public static String getAutoRemovePre() {
         return StringUtils.nvl(getConfig("gen.autoRemovePre"), "true");
     }
 
     /**
      * 表前缀(类名不会包含表前缀)
      */
-    public static String getTablePrefix()
-    {
+    public static String getTablePrefix() {
         return StringUtils.nvl(getConfig("gen.tablePrefix"), "sys_");
     }
 }
