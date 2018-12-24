@@ -21,7 +21,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataSourceAspectByPackage {
 
-    //切入点，调用serviceImpl类就会触发
     @Pointcut("execution(* com.qpp.admin.mapper..*.*(..))")
     public void aspect() {
         throw new UnsupportedOperationException("不支持调用");
