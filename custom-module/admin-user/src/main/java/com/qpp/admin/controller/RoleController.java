@@ -1,7 +1,7 @@
 package com.qpp.admin.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.qpp.admin.core.annotation.Log;
+import com.qpp.common.annotation.log.Log;
 import com.qpp.admin.entity.system.SysRole;
 import com.qpp.admin.entity.system.SysRoleMenu;
 import com.qpp.admin.entity.system.SysRoleUser;
@@ -70,7 +70,7 @@ public class RoleController extends BaseController {
   }
 
   @ApiOperation(value = "/addRole", httpMethod = "POST", notes = "添加角色")
-  @Log(desc = "添加角色")
+  @Log(desc = "添加角色" ,type = Log.LOG_TYPE.ADD)
   @PostMapping(value = "addRole")
   @ResponseBody
   public String addRole(SysRole sysRole,String[] menus){
@@ -107,7 +107,7 @@ public class RoleController extends BaseController {
   }
 
   @ApiOperation(value = "/updateRole", httpMethod = "POST", notes = "更新角色")
-  @Log(desc = "更新角色")
+  @Log(desc = "更新角色",type = Log.LOG_TYPE.UPDATE)
   @PostMapping(value = "updateRole")
   @ResponseBody
   public JsonUtil updateUser(SysRole role, String[] menus) {

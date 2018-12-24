@@ -2,7 +2,7 @@ package com.qpp.admin.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.qpp.admin.core.annotation.Log;
+import com.qpp.common.annotation.log.Log;
 import com.qpp.admin.core.quartz.JobTask;
 import com.qpp.admin.entity.system.SysRole;
 import com.qpp.admin.entity.system.SysRoleUser;
@@ -88,7 +88,7 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation(value = "/addUser", httpMethod = "POST", notes = "添加用户")
-    @Log(desc = "添加用户")
+    @Log(desc = "添加用户",type = Log.LOG_TYPE.ADD)
     @PostMapping(value = "addUser")
     @ResponseBody
     public String addUser(SysUser user, String[] role) {

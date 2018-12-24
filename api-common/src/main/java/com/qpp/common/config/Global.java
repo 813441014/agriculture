@@ -19,7 +19,7 @@ import java.util.Map;
 @Slf4j
 public class Global {
 
-    private static String NAME = "application.yml";
+    private static String NAME = "custom.yml";
     private static final String QPP_PROFILE = "qpp.profile";
 
     /**

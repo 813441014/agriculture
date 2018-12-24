@@ -1,6 +1,6 @@
 package com.qpp.admin.core.quartz;
 
-import com.qpp.admin.core.annotation.Log;
+import com.qpp.common.annotation.log.Log;
 import com.qpp.admin.entity.system.SysJob;
 import com.qpp.basic.exception.MyException;
 import lombok.extern.slf4j.Slf4j;

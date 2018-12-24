@@ -2,7 +2,7 @@ package com.qpp.admin.controller;
 
 import com.alibaba.fastjson.JSONArray;
 
-import com.qpp.admin.core.annotation.Log;
+import com.qpp.common.annotation.log.Log;
 import com.qpp.admin.core.shiro.ShiroUtil;
 import com.qpp.admin.entity.system.SysMenu;
 import com.qpp.admin.entity.system.SysUser;

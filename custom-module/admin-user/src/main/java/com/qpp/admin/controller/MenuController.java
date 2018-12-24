@@ -1,7 +1,7 @@
 package com.qpp.admin.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.qpp.admin.core.annotation.Log;
+import com.qpp.common.annotation.log.Log;
 import com.qpp.admin.entity.system.SysMenu;
 import com.qpp.admin.entity.system.SysRoleMenu;
 import com.qpp.admin.service.system.MenuService;
@@ -45,7 +45,6 @@ public class MenuController extends BaseController {
    * @return
    */
   @ApiOperation(value = "/showMenu", httpMethod = "GET", notes = "展示菜单")
-  //@Log(desc = "展示菜单",type = Log.LOG_TYPE.SELECT)
   @GetMapping(value = "showMenu")
   @RequiresPermissions("menu:show")
   public String showMenu(Model model){
@@ -62,6 +61,7 @@ public class MenuController extends BaseController {
   }
 
   @ApiOperation(value = "/addMenu", httpMethod = "POST", notes = "添加菜单")
+  @Log(desc = "添加菜单",type = Log.LOG_TYPE.ADD)
   @PostMapping(value = "addMenu")
   @ResponseBody
   public JsonUtil addMenu(SysMenu sysMenu, Model model){
@@ -137,7 +137,7 @@ public class MenuController extends BaseController {
   }
 
 
-  @Log(desc = "更新菜单",type = Log.LOG_TYPE.ADD)
+  @Log(desc = "更新菜单",type = Log.LOG_TYPE.UPDATE)
   @PostMapping(value = "updateMenu")
   @ResponseBody
   public JsonUtil updateMenu(SysMenu sysMenu){

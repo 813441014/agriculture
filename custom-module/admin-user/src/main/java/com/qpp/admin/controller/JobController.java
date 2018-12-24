@@ -1,6 +1,6 @@
 package com.qpp.admin.controller;
 
-import com.qpp.admin.core.annotation.Log;
+import com.qpp.common.annotation.log.Log;
 import com.qpp.admin.core.quartz.JobTask;
 import com.qpp.admin.entity.system.SysJob;
 import com.qpp.admin.service.system.JobService;
@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/job")
 public class JobController extends BaseController {
 
+  private static final String UPDATE_FAILD = "获取数据失败";
+
   @Autowired
   JobService jobService;
 
@@ -53,7 +55,7 @@ public class JobController extends BaseController {
   }
 
   @ApiOperation(value = "/addJob", httpMethod = "POST", notes = "添加任务类")
-  @Log(desc = "添加任务")
+  @Log(desc = "添加任务" ,type = Log.LOG_TYPE.ADD)
   @PostMapping(value = "addJob")
   @ResponseBody
   public JsonUtil addJob(SysJob job) {
@@ -90,7 +92,7 @@ public class JobController extends BaseController {
     JsonUtil j=new JsonUtil();
     j.setFlag(false);
     if (job == null) {
-      j.setMsg("获取数据失败");
+      j.setMsg(UPDATE_FAILD);
       return j;
     }
     if(jobTask.checkJob(job)){
@@ -119,7 +121,7 @@ public class JobController extends BaseController {
     JsonUtil j=new JsonUtil();
     j.setFlag(false);
     if (StringUtils.isEmpty(id)) {
-      j.setMsg("获取数据失败");
+      j.setMsg(UPDATE_FAILD);
       return j;
     }
     try{
@@ -152,7 +154,7 @@ public class JobController extends BaseController {
     JsonUtil j=new JsonUtil();
     String msg=null;
     if(StringUtils.isEmpty(id)){
-      j.setMsg("获取数据失败");
+      j.setMsg(UPDATE_FAILD);
       j.setFlag(false);
       return j;
     }
@@ -177,7 +179,7 @@ public class JobController extends BaseController {
     JsonUtil j=new JsonUtil();
     String msg=null;
     if(StringUtils.isEmpty(id)){
-      j.setMsg("获取数据失败");
+      j.setMsg(UPDATE_FAILD);
       j.setFlag(false);
       return j;
     }

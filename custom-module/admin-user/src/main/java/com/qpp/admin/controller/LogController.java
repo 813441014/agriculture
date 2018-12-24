@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qpp.admin.entity.system.SysLog;
-import com.qpp.admin.mapper.system.SysLogMapper;
+import com.qpp.admin.mapper.log.SysLogMapper;
 import com.qpp.basic.base.BaseController;
 import com.qpp.basic.exception.MyException;
 import com.qpp.basic.util.JsonUtil;

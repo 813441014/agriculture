@@ -11,9 +11,10 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.web.filter.DelegatingFilterProxy;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
@@ -83,6 +84,20 @@ public class ShiroConfig {
     return vf;
   }
 
+  @Bean
+  public FilterRegistrationBean delegatingFilterProxy(){
+    FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+    filterRegistrationBean.addUrlPatterns("/*");
+    filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.bmp,*.png,*.nmpocket.css,*.ico,/druid/*,*.html");
+    DelegatingFilterProxy proxy = new DelegatingFilterProxy();
+    proxy.setTargetFilterLifecycle(true);
+    proxy.setTargetBeanName("shiroFilter");
+
+    filterRegistrationBean.setFilter(proxy);
+    return filterRegistrationBean;
+  }
+
+
   @Bean(name = "shiroFilter")
   public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultWebSecurityManager securityManager){
     ShiroFilterFactoryBean sfb = new ShiroFilterFactoryBean();
@@ -119,17 +134,7 @@ public class ShiroConfig {
     as.setSecurityManager(securityManager);
     return as;
   }
-/*
-  @Bean
-  public FilterRegistrationBean delegatingFilterProxy(){
-    FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-    DelegatingFilterProxy proxy = new DelegatingFilterProxy();
-    proxy.setTargetFilterLifecycle(true);
-    proxy.setTargetBeanName("shiroFilter");
 
-    filterRegistrationBean.setFilter(proxy);
-    return filterRegistrationBean;
-  }*/
 
 /**
  * 限制用户登录尝试次数，防止多次尝试，暴力破解密码情况出现。
