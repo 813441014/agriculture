@@ -1,9 +1,8 @@
-package com.qpp.admin.mapper.system;
-
-
-
+package com.qpp.admin.mapper.log;
 
 import com.qpp.admin.entity.system.SysLog;
+import com.qpp.common.annotation.datasource.DataSource;
+import com.qpp.common.constant.enums.DataSourceType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,5 +21,6 @@ public interface SysLogMapper {
 
     int updateByPrimaryKey(SysLog record);
 
+    @DataSource(DataSourceType.LOG)
     List<SysLog> selectListByPage(SysLog sysLog);
 }

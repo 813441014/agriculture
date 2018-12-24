@@ -1,0 +1,32 @@
+# 项目相关配置
+qpp:
+  # 名称
+  name: RuoYi
+  # 版本
+  version: 1.0.0
+  # 版权年份
+  copyrightYear: 2018
+  # 文件上传路径
+  profile: D:/profile/
+  # 获取ip地址开关
+  addressEnabled: true
+
+# 防止XSS攻击
+xss:
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice/*
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*,/tool/*
+
+# 代码生成
+gen:
+  # 作者
+  author: qipengpai
+  # 默认生成包路径 module 需改成自己的模块名称 如 system monitor tool
+  packageName: com.qpp.module
+  # 自动去除表前缀，默认是true
+  autoRemovePre: true
+  # 表前缀(类名不会包含表前缀)
+  tablePrefix: sys_

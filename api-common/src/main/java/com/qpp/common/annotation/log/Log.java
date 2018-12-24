@@ -1,4 +1,4 @@
-package com.qpp.admin.core.annotation;
+package com.qpp.common.annotation.log;
 
 import java.lang.annotation.*;
 

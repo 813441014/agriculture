@@ -1,10 +1,11 @@
-package com.qpp.admin.core.annotation;
+package com.qpp.admin.core.aspect;
 
 import com.alibaba.fastjson.JSON;
 import com.qpp.admin.core.shiro.ShiroUtil;
 import com.qpp.admin.entity.system.SysLog;
-import com.qpp.admin.mapper.system.SysLogMapper;
+import com.qpp.admin.service.log.LogService;
 import com.qpp.basic.base.bean.CurrentUser;
+import com.qpp.common.annotation.log.Log;
 import com.qpp.common.utils.IpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.UnavailableSecurityManagerException;
@@ -23,6 +24,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * @version 1.0.1
@@ -37,11 +40,11 @@ import java.util.Date;
 public class LogAspect {
 
     @Autowired
-    private SysLogMapper logMapper;
+    private LogService logService;
 
-    @Pointcut("@annotation(com.qpp.admin.core.annotation.Log)")
+    @Pointcut("@annotation(com.qpp.common.annotation.log.Log)")
     private void pointcut() {
-
+        throw new UnsupportedOperationException("不支持调用");
     }
 
     @After("pointcut()")
@@ -64,7 +67,7 @@ public class LogAspect {
         sysLog.setText(text);
 
         Object[] obj = jp.getArgs();
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         if (obj != null) {
             for (int i = 0; i < obj.length; i++) {
                 buffer.append("[参数" + (i + 1) + ":");
@@ -79,7 +82,25 @@ public class LogAspect {
         } catch (UnavailableSecurityManagerException e) {
             log.error("[LogAspect]{addLog} -> error!",e);
         }
-        logMapper.insert(sysLog);
+        Future<String> doFutrue =logService.insertLog(sysLog);
+        while(true) {
+            //判断异步任务是否完成
+            if(doFutrue.isDone()) {
+                try {
+                    log.info("[LogAspect]{addLog} -> "+doFutrue.get());
+                } catch (InterruptedException e) {
+                    log.error("[LogAspect]{addLog} -> error! ",e);
+                    /**
+                     *  不管循环里是否调用过线程阻塞的方法如sleep、join、wait，这里还是需要加上
+                     *  !Thread.currentThread().isInterrupted()条件，虽然抛出异常后退出了循环，显
+                     *  得用阻塞的情况下是多余的，但如果调用了阻塞方法但没有阻塞时，这样会更安全、更及时*/
+                    Thread.currentThread().interrupt();
+                } catch (ExecutionException e) {
+                    log.error("[LogAspect]{addLog} -> error! ",e);
+                }
+                break;
+            }
+        }
     }
 
     /**
