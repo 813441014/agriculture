@@ -1,5 +1,8 @@
 package com.qpp.common.utils.file;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.*;
 
 /**
@@ -85,4 +88,42 @@ public class FileUtils {
         }
         return flag;
     }
+
+    /**
+     * 文件的md5
+     *
+     * @param inputStream
+     * @return
+     */
+    public static String fileMd5(InputStream inputStream) {
+        try {
+            return DigestUtils.md5Hex(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static String saveFile(MultipartFile file, String path) {
+        try {
+            File targetFile = new File(path);
+            if (targetFile.exists()) {
+                return path;
+            }
+
+            if (!targetFile.getParentFile().exists()) {
+                targetFile.getParentFile().mkdirs();
+            }
+            file.transferTo(targetFile);
+
+            return path;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
 }
