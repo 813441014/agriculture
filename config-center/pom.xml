@@ -9,6 +9,7 @@
   <packaging>pom</packaging>
   
   <modules>
-
+      <!--原始的配置中心-->
+      <module>original-config</module>
   </modules>		
 </project>
