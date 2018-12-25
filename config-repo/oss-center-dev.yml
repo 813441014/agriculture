@@ -50,3 +50,19 @@ logging:
   path: d:/
   level:
     com.qpp.osscenter.mapper: DEBUG
+qiniu:
+  oss:
+    access_key: k_ag52XwtjTrXCNHnIjdfTyCC4B76c-sS2iahSL0
+    accessKeySecret: D-ftap1MDThqgETokAOMcUeqwnUvILT6mJY-D_1X
+    bucketname: comic
+    httpurl: p0opk9dxj.bkt.clouddn.com
+    fops : -water
+    pipeline : cartoon
+aliyun:
+  oss:
+    access-key: LTAI1yL7B5cOD4p3
+    accessKeySecret: aRuF71oYNod7b77ffrajgINdZnSKX2
+    endpoint: http://oss-cn-beijing.aliyuncs.com
+    bucketName: qpp-img
+    prefix: d:/
+    expiration: 1200 #失效时间 秒为单位
