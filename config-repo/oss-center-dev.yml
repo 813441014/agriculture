@@ -37,7 +37,6 @@ mybatis:
 swagger:
   enabled: true
 
-# PageHelperConfig 可以替代此方案
 pagehelper:
   helperDialect: mysql
   reasonable: true
@@ -46,6 +45,5 @@ pagehelper:
 
 logging:
   path: d:/
-  #file: my.log
   level:
     com.qpp.admin.mapper: DEBUG
