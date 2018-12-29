@@ -24,7 +24,17 @@ public enum DataSourceType implements Supplier<DataSourceType> {
     /**
      * 日志
      */
-    LOG;
+    LOG,
+
+    /**
+     * 文件数据源
+     */
+    FILE,
+
+    /**
+     * 文件更多数据源
+     */
+    FILE_HQ;
 
     //初始为系统管理端
     @Override

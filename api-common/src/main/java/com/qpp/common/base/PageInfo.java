@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-@Builder
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class PageInfo<T> implements Serializable {
     private static final long serialVersionUID = 1L;
