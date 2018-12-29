@@ -1,0 +1,29 @@
+server:
+  port: 8050
+spring:
+  application:
+    name: original-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/qipengpai/agriculture
+          search-paths: config-repo
+          username: 1074723451@qq.com
+          password: pp210510.
+#          force-pull，配置当本地目录与远程配置有冲突时是否强制拉取配置
+#          代码很简单，即为标准的spring-boot项目启动代码
+#    https://blog.csdn.net/red_sheeps/article/details/78386885
+eureka:
+  client:
+      serviceUrl:
+        defaultZone:  http://127.0.0.1:1111/eureka #http://130.75.131.241:8761/eureka,http://130.75.131.248:8762/eureka
+  instance:
+      prefer-ip-address: true
+      instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}  #固定端口
+ #     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${randomServerPort.value[7000,7005]}}  #随机端口
+      #instance-id: ${spring.application.name}:${docker.ipAddress}:${spring.application.instance_id:${server.port}}
+      lease-renewal-interval-in-seconds: 5  #每隔几秒告诉eureka服务器我还存活，用于心跳检测
+      lease-expiration-duration-in-seconds: 10 #如果心跳检测一直没有发送，10秒后会从eureka服务器中将此服务剔除
+      status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/document.html #固定端口
+ #       status-page-url: http://${spring.cloud.client.ip-address}:${randomServerPort.value[7000,7005]}/document.html #随机端口
