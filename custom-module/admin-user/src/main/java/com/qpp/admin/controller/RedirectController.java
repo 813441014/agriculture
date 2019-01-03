@@ -1,10 +1,12 @@
 package com.qpp.admin.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -14,6 +16,8 @@ import java.io.IOException;
 @RequestMapping("/redirect")
 public class RedirectController {
 
+    @Autowired
+    private RestTemplate restTemplate;
     /**
      * @Author qipengpai
      * @Description //TODO 重定向 redis 客户端
@@ -31,6 +35,11 @@ public class RedirectController {
             log.error("[RedirectController]{redisClient}-> error!",e);
         }
         return "";
+    }
+
+    @GetMapping(value = "/hi")
+    public String redisClient(){
+        return  restTemplate.getForObject("https://www.baidu.com",String.class);
     }
 
 }
