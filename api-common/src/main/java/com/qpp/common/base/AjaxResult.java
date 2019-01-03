@@ -15,16 +15,17 @@ public class AjaxResult extends HashMap<String, Object> {
     /**
      * 初始化一个新创建的 Message 对象
      */
-    public AjaxResult() { }
+    public AjaxResult() {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * 返回错误消息
      * 
      * @return 错误消息
      */
-    public static AjaxResult error()
-    {
-        return error(1, "操作失败");
+    public static AjaxResult error() {
+        return error(500, "操作失败");
     }
 
     /**
@@ -33,8 +34,7 @@ public class AjaxResult extends HashMap<String, Object> {
      * @param msg 内容
      * @return 错误消息
      */
-    public static AjaxResult error(String msg)
-    {
+    public static AjaxResult error(String msg) {
         return error(500, msg);
     }
 
@@ -61,7 +61,7 @@ public class AjaxResult extends HashMap<String, Object> {
     public static AjaxResult success(String msg) {
         AjaxResult json = new AjaxResult();
         json.put("msg", msg);
-        json.put("code", 0);
+        json.put("code", 200);
         return json;
     }
     
