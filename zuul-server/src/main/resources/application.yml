@@ -1,0 +1,88 @@
+server:
+  port: 9200
+
+spring:
+  application:
+    name: zuul-server
+
+#设置最大超时时间
+ribbon:
+  ServerListRefreshInterval: 10  #刷新服务列表源的间隔时间
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  ReadTimeout: 90000
+  ConnectTimeout: 90000
+  OkToRetryOnAllOperations: true
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+
+
+
+
+#设置最大容错超时时间
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 90000
+
+
+
+#设置最大容错超时时间
+hystrix:
+  threadpool:
+    default:
+      coreSize: 100
+      maximumSize: 5000
+      allowMaximumSizeToDivergeFromCoreSize: true
+      maxQueueSize: -1
+  command:
+    default:
+      circuitBreaker:
+        foreOpen: false
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 16000
+
+zuul:
+  ribbon-isolation-strategy: thread       # 提高吞吐量
+  threadPool:
+    useSeparateThreadPools: true
+    threadPoolKeyPrefix: zuul-server
+  include:
+    debug:
+      header: true
+  debug:
+    request: true
+    parameter: debugRequest
+  retryable: false    #关闭重试
+  sensitive-headers: #/oauth/token需要请求头处理
+  add-host-header: true
+  routes:
+    oss:
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      path: /api-oss/**
+      service-id: oss-center
+      strip-prefix: true   
+      custom-sensitive-headers: true  #http://blog.didispace.com/spring-cloud-zuul-cookie-redirect/ zuul授权码跳转问题
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:1111/eureka/
+      #http://192.168.3.170:1111/eureka,http://192.168.3.171:1111/eureka,http://192.168.3.173:1111/eureka
+      #http://130.75.131.243:1111/eureka/,http://130.75.131.244:1111/eureka/,http://130.75.131.245:1111/eureka/  
+    registry-fetch-interval-seconds: 3  
+    instance-info-replication-interval-seconds: 3      
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+#    instance-id: ${spring.application.name}:${docker.ipAddress}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 5
+    #注册实例文档
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
+#    status-page-url: http://${docker.ipAddress}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
+swagger:
+  enbale: true
+#  generate-routes: auth-server, auth-client
