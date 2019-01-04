@@ -1,68 +1,9 @@
-server:
-  port: 6688
-spring:
-  datasource:
-    dynamic:
-      enable: true
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
-    file:
-      jdbc-url: jdbc:mysql://47.105.194.152:3306/file-center?useUnicode=true&characterEncoding=UTF-8&useSSL=false
-      username: root
-      password: pp123456
-
-    filehq:
-      jdbc-url: jdbc:mysql://47.105.194.152:3306/file-center-hq?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: root
-      password: pp123456
-
-    filters: stat
-    maxActive: 20
-    maxIdle: 10
-    maxWait: 10000
-    minIdle: 1
-    initialSize: 1
-    validationQuery: select 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-
-mybatis:
-  mapper-locations: classpath:mapper/**/*Mapper.xml
-  type-aliases-package: com.qpp.osscenter.entity.**
-  check-config-location: true
-
 swagger:
   enabled: true
-
-# PageHelperConfig 可以替代此方案
-pagehelper:
-  helperDialect: mysql
-  reasonable: true
-  supportMethodsArguments: true
-  params: count=countSql
 
 logging:
   path: d:/
   level:
     com.qpp.osscenter.mapper: DEBUG
-qiniu:
-  oss:
-    access_key: k_ag52XwtjTrXCNHnIjdfTyCC4B76c-sS2iahSL0
-    accessKeySecret: D-ftap1MDThqgETokAOMcUeqwnUvILT6mJY-D_1X
-    bucketname: comic
-    httpurl: p0opk9dxj.bkt.clouddn.com
-    fops : -water
-    pipeline : cartoon
-aliyun:
-  oss:
-    access-key: LTAI1yL7B5cOD4p3
-    accessKeySecret: aRuF71oYNod7b77ffrajgINdZnSKX2
-    endpoint: http://oss-cn-beijing.aliyuncs.com
-    bucketName: qpp-img
-    prefix: d:/
-    expiration: 1200 #失效时间 秒为单位
+
+test: qpp

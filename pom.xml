@@ -120,7 +120,8 @@
         <module>api-basic</module>
         <!--服务网关-->
         <module>zuul-server</module>
-
+        <!--熔断监控-->
+        <module>turbine-dashboard</module>
     </modules>
 
     <build>
