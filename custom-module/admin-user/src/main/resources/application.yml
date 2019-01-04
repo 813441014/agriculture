@@ -62,3 +62,6 @@ eureka:
       lease-expiration-duration-in-seconds: 10 #如果心跳检测一直没有发送，10秒后会从eureka服务器中将此服务剔除
       status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/document.html #固定端口
  #       status-page-url: http://${spring.cloud.client.ip-address}:${randomServerPort.value[7000,7005]}/document.html #随机端口
+feign:
+  hystrix:
+    enabled: true
