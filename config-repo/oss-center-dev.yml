@@ -1,5 +1,5 @@
 swagger:
-  enabled: true
+  enabled: false
 
 logging:
   path: d:/
