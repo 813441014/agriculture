@@ -1,9 +1,31 @@
 server:
   port: 9200
-
+  undertow:
+      io-threads: 16
+      worker-threads: 256
+      buffer-size: 1024
+      buffers-per-region: 1024
+      direct-buffers: true
 spring:
   application:
     name: zuul-server
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://127.0.0.1:9411
+    enabled: true
+    sender:
+      type: RABBIT
+  rabbitmq:
+    addresses: 47.105.194.152
+    port: 5672
+    username: pengpai
+    password: pengpai
+    virtual-host: /sleuth
 
 #设置最大超时时间
 ribbon:
@@ -18,13 +40,8 @@ ribbon:
   MaxAutoRetries: 1
   MaxAutoRetriesNextServer: 1
 
-
-
-
 #设置最大容错超时时间
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 90000
-
-
 
 #设置最大容错超时时间
 hystrix:
@@ -66,6 +83,13 @@ zuul:
       service-id: oss-center
       strip-prefix: true   
       custom-sensitive-headers: true  #http://blog.didispace.com/spring-cloud-zuul-cookie-redirect/ zuul授权码跳转问题
+    admin-user:
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods
+      path: /admin-user/**
+      service-id: admin-user
+      strip-prefix: true
+      custom-sensitive-headers: true  #http://blog.didispace.com/spring-cloud-zuul-cookie-redirect/ zuul授权码跳转问题
+  ssl-hostname-validation-enabled: false
 
 eureka:
   client:
@@ -84,5 +108,5 @@ eureka:
     status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
 #    status-page-url: http://${docker.ipAddress}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
 swagger:
-  enbale: true
+  enabled: true
 #  generate-routes: auth-server, auth-client

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2018/12/29 17:15
  * @Version 1.0.1
  */
-@RestController
+//@RestController
 @RequestMapping("/demo")
 @Api(tags="zuul内部rest api")
 public class ZuulController {
