@@ -1,6 +1,25 @@
 server:
   port: 6680
 spring:
+  application:
+    name: admin-user
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://localhost:9411/
+    enabled: true
+    sender:
+      type: RABBIT
+  rabbitmq:
+    addresses: 47.105.194.152
+    port: 5672
+    username: pengpai
+    password: pengpai
+    virtual-host: /sleuth
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -65,3 +84,13 @@ eureka:
 feign:
   hystrix:
     enabled: true
+
+#新版配置，否则后面dashboard无法找到hystrix.stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'   #actuator/bus-refresh
+  endpoint:
+    health:
+      show-details: always

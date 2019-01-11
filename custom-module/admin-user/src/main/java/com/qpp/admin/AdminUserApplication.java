@@ -15,9 +15,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan(basePackages = {"com.qpp.admin.mapper.**"})
 @EnableDiscoveryClient
 @EnableFeignClients
-@EnableCircuitBreaker
-@EnableHystrix
-@EnableHystrixDashboard
+//@EnableCircuitBreaker
+//@EnableHystrix
+//@EnableHystrixDashboard
 @SpringBootApplication
 public class AdminUserApplication {
 
