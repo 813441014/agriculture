@@ -30,13 +30,13 @@ public class RedirectController {
      **/
     @GetMapping(value = "/redis_client")
     public String redisClient(Model model, HttpServletResponse response) {
-        response.setHeader("X-Frame-Options", "SAMEORIGIN");// 解决IFrame拒绝的问题
+       /* response.setHeader("X-Frame-Options", "SAMEORIGIN");// 解决IFrame拒绝的问题
         try {
             response.sendRedirect("http://47.105.194.152:8080/redis-admin");
         } catch (IOException e) {
             log.error("[RedirectController]{redisClient}-> error!", e);
-        }
-        return "";
+        }*/
+        return "/redirect/redis_client";
     }
 
     @GetMapping(value = "/hi")
