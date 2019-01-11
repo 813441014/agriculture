@@ -8,7 +8,7 @@ spring:
 turbine:
   aggregator:
     clusterConfig: default
-  appConfig: oss-center
+  appConfig: oss-center,admin-user
   clusterNameExpression: "'default'"
 
 eureka:
@@ -27,6 +27,3 @@ eureka:
     #注册实例文档
     status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
 #    status-page-url: http://${docker.ipAddress}:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号
-swagger:
-  enbale: true
-#  generate-routes: auth-server, auth-client
