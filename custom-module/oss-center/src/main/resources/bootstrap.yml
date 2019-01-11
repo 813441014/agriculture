@@ -1,0 +1,111 @@
+spring:
+  application:
+    name: oss-center
+  cloud:
+    config:
+      profile: dev
+      label: master
+      discovery:
+        enabled: true  # 默认false，设为true表示使用注册中心中的configserver配置而不自己配置configserver的uri
+        serviceId: original-config # 指定config server在服务发现中的serviceId，默认为：configserver
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://127.0.0.1:9411
+    enabled: true
+    sender:
+      type: RABBIT
+  rabbitmq:
+    addresses: 47.105.194.152
+    port: 5672
+    username: pengpai
+    password: pengpai
+    virtual-host: /sleuth
+  datasource:
+      dynamic:
+        enable: true
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      file:
+        jdbc-url: jdbc:mysql://47.105.194.152:3306/file-center?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: root
+        password: pp123456
+
+      filehq:
+        jdbc-url: jdbc:mysql://47.105.194.152:3306/file-center-hq?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        username: root
+        password: pp123456
+
+      filters: stat
+      maxActive: 20
+      maxIdle: 10
+      maxWait: 10000
+      minIdle: 1
+      initialSize: 1
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+mybatis:
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  type-aliases-package: com.qpp.osscenter.entity.**
+  check-config-location: true
+
+# PageHelperConfig 可以替代此方案
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+qiniu:
+  oss:
+    access_key: k_ag52XwtjTrXCNHnIjdfTyCC4B76c-sS2iahSL0
+    accessKeySecret: D-ftap1MDThqgETokAOMcUeqwnUvILT6mJY-D_1X
+    bucketname: comic
+    httpurl: p0opk9dxj.bkt.clouddn.com
+    fops : -water
+    pipeline : cartoon
+aliyun:
+  oss:
+    access-key: LTAI1yL7B5cOD4p3
+    accessKeySecret: aRuF71oYNod7b77ffrajgINdZnSKX2
+    endpoint: http://oss-cn-beijing.aliyuncs.com
+    bucketName: qpp-img
+    prefix: d:/
+    expiration: 1200 #失效时间 秒为单位
+
+#新版配置，否则后面dashboard无法找到hystrix.stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'   #actuator/bus-refresh
+  endpoint:
+    health:
+      show-details: always
+
+eureka:
+  client:
+      serviceUrl:
+        defaultZone:  http://127.0.0.1:1111/eureka #http://130.75.131.241:8761/eureka,http://130.75.131.248:8762/eureka
+  instance:
+      prefer-ip-address: true
+      instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}  #固定端口
+ #     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${randomServerPort.value[7000,7005]}}  #随机端口
+      #instance-id: ${spring.application.name}:${docker.ipAddress}:${spring.application.instance_id:${server.port}}
+      lease-renewal-interval-in-seconds: 5  #每隔几秒告诉eureka服务器我还存活，用于心跳检测
+      lease-expiration-duration-in-seconds: 10 #如果心跳检测一直没有发送，10秒后会从eureka服务器中将此服务剔除
+      status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/document.html #固定端口
+ #       status-page-url: http://${spring.cloud.client.ip-address}:${randomServerPort.value[7000,7005]}/document.html #随机端口
+
+
+# 参考文档：https://github.com/spring-cloud/spring-cloud-config/blob/master/docs/src/main/asciidoc/spring-cloud-config.adoc#discovery-first-bootstrap
