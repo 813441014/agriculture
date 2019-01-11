@@ -11,6 +11,15 @@ spring:
           search-paths: config-repo
           username: 1074723451@qq.com
           password:
+  bus:
+    enabled: true
+    trace:
+      enabled: true
+  rabbitmq:
+    host: 47.105.194.152
+    port: 5672
+    username: pengpai
+    password: pengpai
 #          force-pull，配置当本地目录与远程配置有冲突时是否强制拉取配置
 #    https://blog.csdn.net/red_sheeps/article/details/78386885
 eureka:
@@ -26,3 +35,12 @@ eureka:
       lease-expiration-duration-in-seconds: 10 #如果心跳检测一直没有发送，10秒后会从eureka服务器中将此服务剔除
       status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/document.html #固定端口
  #       status-page-url: http://${spring.cloud.client.ip-address}:${randomServerPort.value[7000,7005]}/document.html #随机端口
+#新版配置，否则后面dashboard无法找到hystrix.stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
