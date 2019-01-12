@@ -39,6 +39,24 @@ public class RedirectController {
         return "/redirect/redis_client";
     }
 
+    /**
+     * @Author qipengpai
+     * @Description //TODO Eureka
+     * @Date 2019/1/11 19:58
+     * @Param []
+     * @return java.lang.String
+     * @throws
+     **/
+    @GetMapping(value = "/eurekaAdmin")
+    public String eurekaAdmin() {
+        return "redirect:http://localhost:1111";
+    }
+
+    @GetMapping(value = "/rabbitAdmin")
+    public String rabbitAdmin() {
+        return "redirect:http://47.105.194.152:15672";
+    }
+
     @GetMapping(value = "/hi")
     @HystrixCommand(fallbackMethod = "hiError")
     public String redisClient() {
